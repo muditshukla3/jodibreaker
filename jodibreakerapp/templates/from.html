@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>American Express Payback</title>
+<link href="{{MEDIA_URL}}/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="css/ie8.css" />
+<![endif]-->
+
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="css/ie7.css" />
+<![endif]-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"> </script>
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.mousewheel-3.0.6.pack.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}/js/s3Slider.js"> </script>
+
+
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript" src="{{MEDIA_URL}}/js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+<script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.customSelect.min.js" > </script>
+<script type="text/javascript">
+function theRotator() {
+	//Set the opacity of all images to 0
+	$('div.rotator ul li').css({opacity: 0.0});
+	
+	//Get the first image and display it (gets set to full opacity)
+	$('div.rotator ul li:first').css({opacity: 1.0});
+		
+	//Call the rotator function to run the slideshow, 6000 = change to next image after 6 seconds
+	
+	setInterval('rotate()',3000);
+	}
+
+function rotate() {	
+	//Get the first image
+	var current = ($('div.rotator ul li.show')?  $('div.rotator ul li.show') : $('div.rotator ul li:first'));
+    if ( current.length == 0 ) current = $('div.rotator ul li:first');
+	//Get next image, when it reaches the end, rotate it back to the first image
+	var next = ((current.next().length) ? ((current.next().hasClass('show')) ? $('div.rotator ul li:first') :current.next()) : $('div.rotator ul li:first'));
+		//Un-comment the 3 lines below to get the images in random order
+	
+	//var sibs = current.siblings();
+    //var rndNum = Math.floor(Math.random() * sibs.length );
+    //var next = $( sibs[ rndNum ] );
+			
+	//Set the fade in effect for the next image, the show class has higher z-index
+	next.css({opacity: 0.0})
+	.addClass('show')
+	.animate({opacity: 1.0}, 1000);
+
+	//Hide the current image
+	current.animate({opacity: 0.0}, 1000)
+	.removeClass('show');
+};
+
+$(document).ready(function() {		
+	//Load the slideshow
+	theRotator();
+	$('div.rotator').fadeIn(1000);
+    $('div.rotator ul li').fadeIn(1000); // tweek for IE
+
+			$('.fancybox').fancybox({
+					'autoScale'         : false,
+				    'autoDimensions'    : false,
+					'padding'			: 0,
+					'margin'			: 0,
+				    'scrolling'         : 'no',
+				    'transitionIn'      : 'none',
+				    'transitionOut'     : 'none',
+				    'type'              : 'iframe'
+					
+			});
+		
+			/*$('#slides').slides({
+				preload: false,
+				preloadImage: 'img/loading.gif',
+				play: 4000,
+				pause: 2000,
+				hoverPause: true
+			});
+			
+			$('#slider').s3Slider({
+				timeOut: 2000
+			});
+		*/
+			 $('.styled').customSelect();
+		});
+	</script>
+
+
+</head>
+
+<body>
+<div class="wrapper">
+	<div class="header">
+    	<div class="logo"><a href="https://www.americanexpress.com/india/" target="_blank"><img src="{{MEDIA_URL}}/images/logo.jpg" border="0"></a></div>
+    </div>
+    
+    
+    <div class="contant_outer_2">
+ 	    <div class="left_contant_2">
+        	<div class="form_top"></div>
+            <div class="facebook"><a href="https://www.facebook.com/AmericanExpressIndia" target="_blank"><div class="facebook_hover"></div></a></div>
+            <div class="clear"></div>
+           <div class="card_2"><a href="https://www.americanexpress.com/in/content/payback-card/" target="_blank"><img src="{{MEDIA_URL}}/images/pay_back_card.png" border="0"></a></div> 
+        </div>
+       
+        <div class="center_contant_2">
+         	<div class="goa_jao_2"><img src="{{MEDIA_URL}}images/rewarding_small.png"></div>
+                <div class="from_banner">
+                	<div class="rotator">
+                      <ul>
+                        <li class="show"><a href="#link1"><img src="{{MEDIA_URL}}/images/banner1.png" border="0" /></a></li>
+                        <li><a href="#link2"><img src="{{MEDIA_URL}}/images/banner2.png" border="0"/></a></li>
+                        <li><a href="#link3"><img src="{{MEDIA_URL}}/images/banner3.png" border="0"/></a></li>
+                        
+                      </ul>
+                    </div>
+                </div>
+          </div>
+      
+    <div class="right_contant_2">
+    <div class="garima_header">	
+        <h2>Hi {{facebookName}}</h2>
+        <div class="facebook_icon"><img src="{{MEDIA_URL}}/images/facebook_icon.png"></div>
+        <div class="clear"></div>
+        
+    </div>
+   <form method="post" action="{% url trendingjodi %}" id="user_jodi">
+    <input type="hidden" name="fb_id" value="{{facebookid}}"/>
+    <input type="hidden" name="mobile_no" value=""/>
+    <div class="make">Make your Jodi a rewarding one in 3 simple steps:</div> 
+    <div class="tell_us"><img src="{{MEDIA_URL}}/images/tell.png"></div><br>
+
+    <div class="make">Choose from the list or enter your own rewarding Jodi</div>
+   	<div class="from">
+   	    {{ form.jodi }}
+		<!-- <select class="styled" style=" background: url({{MEDIA_URL}}/images/form_box_1.png) no-repeat;padding:13px 20px 0px 10px; width:215px !important;border: none;height: 25px; " >
+         </select>
+         -->
+     </div>     
+     	
+     <div class="or">-or-</div>
+      	<div class="from">
+      	{{ form.jodi_custom }} 
+        <!--  <input type="text" name="" style=" background: url({{MEDIA_URL}}/images/form_box.png) no-repeat;padding:5px 50px 5px 10px;width: 197px;border: none;height: 30px;"> -->
+        <div class="form_imformation">eg, Jai & Veeru or Chai & Samosa.</div>
+    </div>
+    <div class="continue"><a href="{{MEDIA_URL}}/video/no.html" class="fancybox iframe.fancybox"  style="color:#0072bc; text-decoration:none;"><div class="continue_hover"></div></a></div>
+    <input type="submit" name="submit" value="submit"/>
+    </form>
+    </div>  
+      
+      <div class="terma_and_condition_2"><a href="#" target="_blank">Terms and Conditions apply.</a></div>
+      
+    </div>
+    <div class="fotter">
+    	<div class="fotter_text">
+        	<div class="american_express"> The New American Express PAYBACK<sup>&reg;</sup> Credit Card</div>
+            <div class="rewards"> rewards you with points from both American Express and  PAYBACK -<br>
+								 India’s largest loyalty programme.</div>
+            </div>
+            <div class="apply_now"><a href="https://www252.americanexpress.com/inga2/ind/pers/begin.do?perform=IntlEapp:IND:payback_credit&linknav=IN-PaybackDetails-ApplyNow" target="_blank"><div class="apply_now_hover"></div></a></div>
+    </div>
+    
+    <div class="copyright">Copyright © 2013 American Express Company</div>
+</div>
+</body>
+</html>

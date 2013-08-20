@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>American Express Payback</title>
+<link href="{{MEDIA_URL}}/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="css/ie8.css" />
+<![endif]-->
+
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="css/ie7.css" />
+<![endif]-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"> </script>
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.mousewheel-3.0.6.pack.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}/js/s3Slider.js"> </script>
+
+
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript" src="{{MEDIA_URL}}/js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+<script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.customSelect.min.js" > </script>
+<script type="text/javascript">
+function theRotator() {
+	//Set the opacity of all images to 0
+	$('div.rotator ul li').css({opacity: 0.0});
+	
+	//Get the first image and display it (gets set to full opacity)
+	$('div.rotator ul li:first').css({opacity: 1.0});
+		
+	//Call the rotator function to run the slideshow, 6000 = change to next image after 6 seconds
+	
+	setInterval('rotate()',3000);
+	}
+
+function rotate() {	
+	//Get the first image
+	var current = ($('div.rotator ul li.show')?  $('div.rotator ul li.show') : $('div.rotator ul li:first'));
+    if ( current.length == 0 ) current = $('div.rotator ul li:first');
+	//Get next image, when it reaches the end, rotate it back to the first image
+	var next = ((current.next().length) ? ((current.next().hasClass('show')) ? $('div.rotator ul li:first') :current.next()) : $('div.rotator ul li:first'));
+		//Un-comment the 3 lines below to get the images in random order
+	
+	//var sibs = current.siblings();
+    //var rndNum = Math.floor(Math.random() * sibs.length );
+    //var next = $( sibs[ rndNum ] );
+			
+	//Set the fade in effect for the next image, the show class has higher z-index
+	next.css({opacity: 0.0})
+	.addClass('show')
+	.animate({opacity: 1.0}, 1000);
+
+	//Hide the current image
+	current.animate({opacity: 0.0}, 1000)
+	.removeClass('show');
+};
+
+$(document).ready(function() {		
+	//Load the slideshow
+	theRotator();
+	$('div.rotator').fadeIn(1000);
+    $('div.rotator ul li').fadeIn(1000); // tweek for IE
+
+			$('.fancybox').fancybox({
+					'autoScale'         : false,
+				    'autoDimensions'    : false,
+					'padding'			: 0,
+					'margin'			: 0,
+				    'scrolling'         : 'no',
+				    'transitionIn'      : 'none',
+				    'transitionOut'     : 'none',
+				    'type'              : 'iframe'
+					
+			});
+		
+			/*$('#slides').slides({
+				preload: false,
+				preloadImage: 'img/loading.gif',
+				play: 4000,
+				pause: 2000,
+				hoverPause: true
+			});
+			
+			$('#slider').s3Slider({
+				timeOut: 2000
+			});
+		*/
+			 $('.styled').customSelect();
+		});
+	</script>
+
+
+</head>
+
+<body>
+<div class="wrapper">
+	<div class="header">
+    	<div class="logo"><a href="https://www.americanexpress.com/india/" target="_blank"><img src="{{MEDIA_URL}}/images/logo.jpg" border="0"></a></div>
+    </div>
+    
+    
+    <div class="contant_outer_2">
+ 	    <div class="left_contant_2">
+        	<div class="form_top"></div>
+            <div class="facebook"><a href="https://www.facebook.com/AmericanExpressIndia" target="_blank"><div class="facebook_hover"></div></a></div>
+            <div class="clear"></div>
+            <div class="card_2"><a href="https://www.americanexpress.com/in/content/payback-card/" target="_blank"><img src="{{MEDIA_URL}}/images/pay_back_card.png" border="0"></a></div> 
+        </div>
+       
+        <div class="center_contant_2">
+         	<div class="goa_jao_2"><img src="{{MEDIA_URL}}/images/rewarding_small.png"></div>
+                <div class="treading_rodis"><img src="{{MEDIA_URL}}/images/treading_jodis.jpg"></div>
+                <div class="jodi_menu">
+                	<ol>
+                    	<li class="odd"><a href="#">1.  Santa & Banta</a></li>
+                        <li><a href="#">2. Chai & Samosa</a></li>
+                        <li class="odd"><a href="#">3. Nachos & Salsa</a></li>
+                        <li><a href="#">4. Rabri & Jalebi</a></li>
+                        <li class="odd"><a href="#">5. Rumali roti & kababs</a></li>
+                        <li><a href="#">6. Chacha choudhary & Saboo</a></li>
+                        <li class="odd"><a href="#">7. French fries & burgers</a></li>
+                        <li><a href="#">8. Bread & Jam</a></li>
+                        <li class="odd"><a href="#">9. Chocolate & strawberry</a></li>
+                        <li><a href="#">10. Sun & Sand</a></li>
+               
+                </ol>
+                
+                </div>
+          </div>
+      
+    <div class="right_contant_2">
+    <div class="garima_header">	
+        <h2>Hi {{name}}</h2>
+        <div class="facebook_icon"><img src="{{MEDIA_URL}}/images/facebook_icon.png"></div>
+        <div class="clear"></div>
+    </div>
+    
+    <div class="make">Thank you for submitting your rewarding jodi</div> 
+    <div class="harmonium">{{selected_jodi}}</div>
+   	<div class="your_jodi">Your Jodi is ranked 198th in the Rewarding Jodi Contest.</div>
+	
+    <div class="hurry">Hurry! Share it with all your friends and get maximum votes from them to win.</div>	
+      	
+    <div class="share_now"><a href="vote.html"><div class="share_now_hover"></div></a></div>
+    
+    </div>  
+      
+      <div class="terma_and_condition_2"><a href="#" target="_blank">Terms and Conditions apply.</a></div>
+      
+    </div>
+    <div class="fotter">
+    	<div class="fotter_text">
+        	<div class="american_express"> The New American Express PAYBACK<sup>&reg;</sup> Credit Card</div>
+            <div class="rewards"> rewards you with points from both American Express and  PAYBACK -<br>
+								 India’s largest loyalty programme.</div>
+            </div>
+            <div class="apply_now"><a href="https://www252.americanexpress.com/inga2/ind/pers/begin.do?perform=IntlEapp:IND:payback_credit&linknav=IN-PaybackDetails-ApplyNow" target="_blank"><div class="apply_now_hover"></div></a></div>
+    </div>
+    
+    <div class="copyright">Copyright © 2013 American Express Company</div>
+</div>
+</body>
+</html>
