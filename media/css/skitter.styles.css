@@ -1,0 +1,23 @@
+/* =Skitter styles*/
+
+* { margin:0; padding:0; list-style:none; }
+body { }
+a, a img { border:none; outline:none; color:#004499; background:none; }
+
+.box_skitter {position:relative;width:330px;height:300px;}
+.box_skitter img { max-width:none; } /* Tip for stildv */
+.box_skitter ul {display:none;}
+.box_skitter .container_skitter {overflow:hidden;position:relative;}
+.box_skitter .image {overflow:hidden;}
+.box_skitter .image img {display:none;}
+
+/* =Box clone
+-------------------------------------------------------------- */
+.box_skitter .box_clone {position:absolute;top:0;left:0;width:100px;overflow:hidden;display:none;z-index:20;}
+.box_skitter .box_clone img {position:absolute;top:0;left:0;z-index:20;}
+
+/* =Navigation
+-------------------------------------------------------------- */
+.box_skitter .prev_button {position:absolute;top:50%;left:35px;z-index:100;width:42px;height:42px;overflow:hidden;text-indent:-9999em;margin-top:-25px;}
+.box_skitter .next_button {position:absolute;top:50%;right:35px;z-index:100;width:42px;height:42px;overflow:hidden;text-indent:-9999em;margin-top:-25px;}
+

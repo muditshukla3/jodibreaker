@@ -1,0 +1,164 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {line-height:1;background:#fff;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after, q:before, q:after {content: '';content: none;}
+/* remember to define focus styles! */
+:focus {outline: 0;}
+/* remember to highlight inserts somehow! */
+ins {text-decoration: none;}
+del {text-decoration: line-through;}
+/* tables still need 'cellspacing="0"' in the markup */
+table {border-collapse: collapse;border-spacing: 0;}
+.american_express sup{font-size:14px; }
+a {outline:none; border:none; }
+img.bg {
+    z-index: 0;	
+}
+img.bg {height: auto;left: 0;min-height: 100%;min-width: 1400px;position: absolute;top: 0;width: 100%;z-index: 0;}
+/* support code */
+
+.wrapper {width:973px; height:720px; margin:0px auto;}
+.header {height:110px; width:100%;}
+.logo {width:71px; height:62px; float:right; margin:25px 0 0 0;}
+.contant_outer {background:#ffc20f; position:relative; min-height:448px; background:url(//media/images/bg.jpg) no-repeat;}
+.contant_outer_2 {background:#ffc20f; position:relative; min-height:550px;}
+
+.poitee {padding:43px 0 0 30px ;width:103px; height:67px;}
+.poitee_hand {width:45px; height:73px; z-index:999; position:relative; margin:-12px 0 0 12px;}
+
+.left_contant {width:270px; height:400px; float:left;}
+.left_contant_2 {width:120px; height:400px; float:left;}
+
+.watch_video {width:242px; height:209px; margin:-35px 0 0 30px; }
+.facebook {width:100px; height:30px; margin-top:50px;}
+.facebook_hover {width:100px; height:47px; background:url(/media/images/facebook.png) no-repeat top; }
+.facebook_hover:hover {width:100px; height:48px; background-position:bottom }
+
+.card {width:180px; height:170px; margin:105px 0px 0px 87px;}
+.card_2 {width:180px; height:170px; margin:221px 0px 0px 87px;}
+
+/*banner*/
+div.rotator {position:relative;margin-left: 0px;display: none;	 }
+/* rotator css */
+div.rotator ul li {	float:left;	position:absolute;list-style: none;}
+/* rotator image style */	
+div.rotator ul li img {	padding: 4px; margin:-33px 25px 0px -40px;}
+div.rotator ul li.show {z-index:500}
+
+.center_contant {width:317px; height:400px; float:left;}
+.center_contant_2 {width:317px; height:400px; float:left; margin-left:-20px;}
+.goa_jao {width:267px; height:120px; margin:30px 0px 0px 19px;}
+.goa_jao_2 {width:267px; height:120px; margin:55px 0px 0px 18px;}
+
+.banner {width:267px; height:200px; margin-top:0px;}
+.from_banner {width:267px; height:200px; margin:0px 0 0 13px;}
+
+.right_contant {width:344px; height:400px; float:left;}
+.right_contant_text {font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#363636; line-height:21px; padding:20px 10px 0 15px; width:322px;}
+.right_top { width:200px; height:80px;}
+.rewarding {width:350px; height:30px;}
+
+.participate_hover {width:240px; height:65px; margin:35px 15px 8px 14px;}
+.participate_hover{width:240px; height:65px; margin:35px 15px 8px 14px; background:url(/media/images/pariticipate.png) no-repeat top; }
+.participate_hover:hover { margin:32px 10px 11px 11px; background-position:bottom;}
+
+.participate_hover_2 {width:230px; height:65px; margin:30px 17px 8px -5px;}
+.participate_hover_2{width:230px; height:65px; margin:30px 17px 8px -5px; background:url(/media/images/pariticipate.png) no-repeat top; }
+.participate_hover_2:hover { margin:27px 17px 8px -8px; background-position:bottom;}
+
+.terma_and_condition {width:180px; height:15px; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; float:right; margin-top:16px;}
+.terma_and_condition a{ float:right; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; text-decoration:none; margin-top:0px;}
+.terma_and_condition_2 {width:180px; height:15px; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; float:right; margin-top:21px;}
+.terma_and_condition_2 a{ float:right; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; text-decoration:none; margin-right:30px;}
+.copyright {width:260px; float:right; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#134567; margin-right:0px;}
+
+.fotter {width:937px; margin:0px auto; background:url(/media/images/bg_card_blue.png) no-repeat; height:109px; }
+.fotter_text { width:498px; height:100px; float:left; margin:0px 0px 0px 270px;}
+.american_express {font-size:21px; color:#134567; margin-top:20px; font-family:Arial, Helvetica, sans-serif;}
+
+.apply_now {width:70px; float:left; margin-top:34px;}
+.apply_now_hover {width:130px; float:left;background:url(/media/images/apply_now.png) no-repeat top; height:40px;}
+.apply_now_hover:hover {width:130px; float:left; height:44px; background-position:bottom;}
+
+.rewards { font-size:16px; color:#134567; margin-top:5px; font-family:Arial, Helvetica, sans-serif; line-height:20px;}
+.middle_box {width:320px; height: 400px; float:left; margin:30px 0 0 300px;}
+.form_top {height:170px;}
+
+.garima_header {widows:300px; height:60px; margin-top:35px; border-bottom:1px solid #1f4999; }
+.right_contant_2 {width:537px; height:500px; float:left; margin-left:19px; }
+h2 {font-size:24px; color:#215578; width:auto; float:left; font-weight:lighter; font-family:Arial, Helvetica, sans-serif; padding-left:15px;}
+.make {font-size:16px; color:#215578; font-weight:lighter; font-family:Arial, Helvetica, sans-serif;}
+.facebook_icon {float:left; margin:23px 0 0 5px; width:auto;}
+.make {margin:20px 0px 20px 15px; }
+.clear {clear:both;}
+
+.fancybox-skin {width:550px !important; height:316px; margin-top:0px;}
+img a{outline:none;}
+a {outline:}
+
+#fancybox-content{height: 240px !important; background:#ffc20f !important; width:518px !important; }
+
+.from {width:203px; height:50px; padding-left:19px; font-size:16px; color:#333; float:left; }
+
+span.customSelect {font-size:11px;background-color: #f5f0de;color:#7c7c7c;	padding:7px 7px;border:1px solid #e7dab0;-moz-border-radius: 7px;-webkit-border-radius: 7px;	border-radius: 7px 7px;	width:230px;}
+span.customSelect.changed {	background-color: #f0dea4; padding:10px 0 0 0px;}
+.customSelectInner {background:url('/media/images/customSelect-arrow.gif') no-repeat center right;}
+
+span.customSelect {	font-size:13px;	background-color: #ffda6f;	color:#333;	padding:12px 10px;	border:1px solid #ebb20e;-moz-border-radius: 5px;-webkit-border-radius: 5px;	border-radius: 7px 7px; font-family:Arial, Helvetica, sans-serif; width:185px; height:30px;	}
+span.customSelect.changed {	background-color: #f0dea4; }
+.customSelectInner {background:url(/media/images/customSelect-arrow.gif) no-repeat center right; width:130px;padding:0px 50px 0 0;}
+option {background:#ffda6f; }
+	
+.or { width:26px; height:10px; font-size:16px; color:12px; float:left; padding:11px 4px 0 24px; margin-right:-21px; }
+from_text {background: url(/media/images/form_box.png) no-repeat;padding: 5px;width: 213px !important;border: none;height: 30px; color:#7c7c7c;}
+.form_imformation {font-size:11px; color:#636363;padding:7px 5px 5px 24px; font-family:Arial, Helvetica, sans-serif; width:180px; }
+
+.continue_hover {float:right; margin:20px 30px 0px 0px;}
+.continue_hover{ width:175px; height:62px; float:right; margin:30px 30px 0px 0px; background:url(/media/images/continue.png) no-repeat top;}
+.continue_hover:hover {float:right; margin:30px 30px 0px 0px; background-position:bottom;}
+
+.text14	{font-family:Arial, Helvetica, sans-serif; font-size:15px; color:#363636; width:379px; margin-left:17px;}
+
+.box  {width:512px; height:248px; background:#ffc20f; margin-top:20px; }
+.left_img {width:170px; height:190px; float:left;  margin-top:25px; float:left; margin-left:17px;}
+.right_just { width:280px; height:220px; float:left; margin:40px 0 0 20px; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#333; line-height:22px; }
+.num_from {width:250px; float:left;}
+.skip {width:50px; height:80px; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#000; float:left; margin-top:20px;}
+.sumit {width:100px; height:100px; float:left;  margin-top:10px;}
+
+.fancybox-wrap {height: auto;  left: 358px;  opacity: 1;  overflow: visible;  position: bsolute;   top: 131px;    width: 500px;}
+
+.styled hasCustomSelect {width:209 !important;}
+.fancybox-inner {width:551px !important; height:270px !important;}
+.styled hasCustomSelect {width:219px !important;}
+
+.treading_rodis {width:200px; height:38px;  margin: 0px 0 0 62px;}
+
+.jodi_menu {width:200px; height:180px; margin: 0px 0 0 80px;}
+.jodi_menu ol { margin:auto; padding:0px;}
+.jodi_menu li { height:15px; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000; margin-top:7px; list-style:none; margin-left:-10px;}
+.jodi_menu a{ font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000; text-decoration:none; }
+
+.harmonium {width:300px; height:50px; font-family:"Times New Roman", Times, serif; font-size:28px; color:#FFF; margin: 0 0 18px 18px;}
+.your_jodi {width:383px; height:15px; padding:15px; background:#ffd65e; font-family:Georgia, "Times New Roman", Times, serif; font-size:15px; color:#134567;}
+.hurry {width:310px; margin:0px 0px 0px 14px; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#134567; margin-top:30px; line-height:20px; float:left;}
+
+.share_now_hover {width:170px; height:59px; float:left; background:url(/media/images/share_now.png) no-repeat top; margin:18px 0px 0px 0px }
+.share_now_hover hover {width:170px; float:left;  height:59px;}
+.share_now_hover:hover {width:170px;  float:left; background-position:bottom; margin:19px 0px 0px 0px;  height:62px;}
+
+.vote_hover {width:115px; height:56px; float:left; background:url(/media/images/vote.png) no-repeat top; margin:10px 0px 0px 0px ;}
+.vote_hover a {width:115px; float:left;  height:56px;}
+.vote_hover:hover {width:115px; height:56px;  float:left; background-position:bottom;  margin:10px 0px 0px 0px ; }
+
+.vote_contain {width:206px; height:50px; font-size:16px; color:#134567; font-family:Arial; float:left; margin-top:17px; line-height:21px; }
+.vote_participate_now {width:220px; height:50px; float:left;}
+
+.trip_to_goa {width:491px; height:120px; border-bottom:2px dotted #c7a035; border-top:2px dotted #c7a035;  float:right; margin: 50px 48px 0 20px;  }
+.trip_to_goa_contain {width:263px; font-size:14px; color:#134567; line-height:22px; font-family:Arial; padding:23px 0px 0px 7px; float:left;}
+.text_blue_14 {font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#134567;}	
+.text_blue_16 {font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#134567;}
+
+.odd {background:#ffce3f; height:15px; padding:3px 2px 2px 0px ; margin-left:-22px; list-style:none; }
