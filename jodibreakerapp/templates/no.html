@@ -1,37 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Amex Bill Desk</title>
-<link href="{{MEDIA_URL}}/css/style.css" rel="stylesheet" type="text/css">
-<style>
-body,html{background:#ffc20f; opacity:3.0;margin:0px !important;padding:3px 5px 0px 3px  !important; margin:auto !important;width: 518px; height: 311px; overflow:hidden;}
 
-</style>
-<script type="text/javascript">
-  function submitform(val)
-  {
-	  if(val==2){
-	    window.opener.document.user_jodi.mobile_no.value=document.getElementById('mobile').value
-	  }  
-	  window.opener.document.user_jodi.submit()
-	  window.close()
-	  
-  }
-</script>
-</head>
-<body>
-<div class="box">
-	<div class="left_img"><img src="{{MEDIA_URL}}/images/no_img.jpg"></div>
+<div class="box cls_box disable">
+    <div class="left_img"><img src="/media/images/no_img.jpg"></div>
     <div class="right_just">Just in case your rewarding jodi wins, your contact details would be the fastest way to send you to Goa.
-    <div class="num_from">
-     <input type="text" name="mobile" class="styled" style=" background:url({{MEDIA_URL}}/images/no_bg.jpg) no-repeat;padding:0px 5px 5px 30px;width: 193px;border: none;height: 30px; font-size:12px;">
-     </div>     
-     <div class="clear"></div>
-    <div class="skip"><a href="" onclick="javascript:submitform(1);" target="_top" style=" color:#000; text-decoration:none;">Skip | </div>
-    <div class="sumit"><a href="" onclick="javascript:submitform(2);" target="_top" ><img src="{{MEDIA_URL}}/images/sumit.jpg" style="vertical-align:bottom;" border="0"></a></div>
+        <div class="num_from">
+            <input type="text" id="cls_mob" name="mobile" class="mobs" />
+        </div>
+        <div class="clear"></div>
+        <div class="skip"><a href="" class="cls_continue_mob cls_skip" style=" color:#000; text-decoration:none;">Skip | </div>
+        <div class="sumit"><a href="javascript:void(0)" class="cls_continue_mob"><img src="/media/images/sumit.jpg" style="vertical-align:bottom;" border="0"></a></div>
     </div>
 
 </div>
-
-</body>
-</html>

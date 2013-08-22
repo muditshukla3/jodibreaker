@@ -28,7 +28,9 @@
 
         <link href="{{MEDIA_URL}}/css/style.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/jquery.fancybox.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/jquery-ui-1.9.2.custom.min.css" media="screen" />
 
+        <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/override.css" media="screen" />
         <!--[if IE 8]>
 <link rel="stylesheet" type="text/css" href="css/ie8.css" />
 <![endif]-->
@@ -52,19 +54,21 @@
 </head>
 {% endblock head %}
 <body>
-	<div class="main">
-
+	<div class="wrapper">
+        {% block header %}{% include "header.html" %}{% endblock header %}
 		{% block bodycontent %}	{% endblock bodycontent %}
 		{% block left %}	{% endblock left %}
 		{% block right %}	{% endblock right %}
-		{% block footerbase %}{% endblock footerbase %}
+		{% block footerbase %}{% include "footer.html" %}{% endblock footerbase %}
 	</div>
 {% block ASYJS %}
 
 	<script src="{{MEDIA_URL}}js/jquery.1.8.3.min.js" type="text/javascript"></script>
+    <script src="{{MEDIA_URL}}js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.mousewheel-3.0.6.pack.js"></script>
     <script type="text/javascript" src="{{MEDIA_URL}}/js/s3Slider.js"> </script>
     <script type="text/javascript" src="{{MEDIA_URL}}/js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}/js/jodibreaker.js"></script>
 
     <script type="text/javascript">
         function theRotator() {

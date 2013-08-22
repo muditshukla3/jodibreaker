@@ -39,6 +39,7 @@ def index(request):
 
 @facebook_required
 def trendingjodi(request):
+
     if request.method == 'POST':
         jodi = request.POST.get('jodi')
         jodi_custom=request.POST.get('jodi_custom')
