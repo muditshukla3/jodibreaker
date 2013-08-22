@@ -23,7 +23,7 @@ def home(request, graph):
             loc=me.get('location')
             if loc.get('name'):
                 kwargs['city']=me['location']['name']
-        kwargs['mobile_no']=None
+        kwargs['mobile_no']=''
         if not fbprofile:
             FacebookUserProfile.objects.create(**kwargs)
         
