@@ -12,13 +12,20 @@ def home(request, graph):
     if request.method == 'GET':
         me = graph.get('me')
         fbprofile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
+        kwargs={'facebook_id':me['id']}
+        if me.get('username'):
+            kwargs['facebook_username']=me['username']
+        if me.get('first_name'):
+            kwargs['facebook_firstname']=me['first_name']
+        if me.get('email'):
+            kwargs['email']=me['email']
+        if me.get('location'):
+            loc=me.get('location')
+            if loc.get('name'):
+                kwargs['city']=me['location']['name']
+        kwargs['mobile_no':None]
         if not fbprofile:
-            FacebookUserProfile.objects.create(facebook_id=me['id'],
-                                           facebook_username=me['username'],
-                                           facebook_firstname=me['first_name'],
-                                           email=me['email'],
-                                           city=me['location']['name'],
-                                           mobile_no=None)
+            FacebookUserProfile.objects.create(**kwargs)
         
         form = UserJodiForm()
         
