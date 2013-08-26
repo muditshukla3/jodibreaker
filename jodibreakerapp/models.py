@@ -10,7 +10,7 @@ class FacebookUserProfile(models.Model):
     mobile_no=models.BigIntegerField(blank=True, unique=True, null=True)
     
     def __unicode__(self):
-        return self.facebook_name
+        return self.facebook_firstname
     
 class Jodi(models.Model):
     jodi=models.CharField(max_length=50,unique=True)
@@ -24,4 +24,4 @@ class UserJodi(models.Model):
     profile=models.ForeignKey(FacebookUserProfile)
     
     def __unicode__(self):
-        return self.jodi_custom    
+        return self.profile.facebook_firstname    

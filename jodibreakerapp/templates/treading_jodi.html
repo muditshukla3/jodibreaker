@@ -14,7 +14,12 @@
          	<div class="goa_jao_2"><img src="{{MEDIA_URL}}/images/rewarding_small.png"></div>
                 <div class="treading_rodis"><img src="{{MEDIA_URL}}/images/treading_jodis.jpg"></div>
                 <div class="jodi_menu">
-                	<ol>
+                    <ol>
+                      {% for jodi in trending_jodi %}
+                          <li class="odd"><a href="#"> {{forloop.counter}}.  {{jodi}}</a></li>
+                      {% endfor %}    
+                    </ol>
+                	<!-- <ol>
                     	<li class="odd"><a href="#">1.  Santa & Banta</a></li>
                         <li><a href="#">2. Chai & Samosa</a></li>
                         <li class="odd"><a href="#">3. Nachos & Salsa</a></li>
@@ -26,7 +31,7 @@
                         <li class="odd"><a href="#">9. Chocolate & strawberry</a></li>
                         <li><a href="#">10. Sun & Sand</a></li>
                
-                </ol>
+                    </ol> -->
                 
                 </div>
           </div>
