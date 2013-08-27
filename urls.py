@@ -1,12 +1,13 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
-
+from django.views.generic.simple import direct_to_template
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
                        url(r'^$', 'jodibreaker.jodibreakerapp.views.index', name='index'),
                        url(r'^home/', 'jodibreaker.jodibreakerapp.views.home', name='home'),
+						url(r'^video/$', direct_to_template,{'template':'video.html'},name='video'),
                        url(r'^trendingjodis/','jodibreaker.jodibreakerapp.views.trendingjodi',name='trendingjodi'),
                        url(r'^facebook/', include('django_facebook.urls')),
                        url(r'^accounts/', include('django_facebook.auth_urls')),
