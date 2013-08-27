@@ -140,6 +140,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     'django_facebook.context_processors.facebook',
+    'jodibreakerapp.context_processor.trending_jodi',
 )
 
 AUTHENTICATION_BACKENDS = (
