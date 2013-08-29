@@ -25,4 +25,8 @@ class UserJodi(models.Model):
     counter=models.IntegerField(default=0)
     
     def __unicode__(self):
-        return self.profile.facebook_firstname    
+        return self.profile.facebook_firstname
+    
+class Vote(models.Model):
+    jodi=models.ForeignKey(UserJodi)
+    profile=models.ForeignKey(FacebookUserProfile)        
