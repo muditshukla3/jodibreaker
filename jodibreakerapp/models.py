@@ -19,7 +19,7 @@ class Jodi(models.Model):
         return self.jodi
     
 class UserJodi(models.Model):
-    jodi=models.ForeignKey(Jodi,null=True)
+#     jodi=models.ForeignKey(Jodi,null=True)
     jodi_custom=models.CharField(max_length=50,null=True)
     profile=models.ForeignKey(FacebookUserProfile)
     counter=models.IntegerField(default=0)

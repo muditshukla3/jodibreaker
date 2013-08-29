@@ -5,6 +5,9 @@ from django_facebook.decorators import facebook_required
 from forms import UserJodiForm
 from httplib import HTTPResponse
 from models import FacebookUserProfile, Jodi, UserJodi
+from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.contrib.sites.models import Site
 
 @facebook_required()
 def home(request, graph):
@@ -57,25 +60,33 @@ def trendingjodi(request,graph):
             selected_jodi = jodi_custom
         else:
             jodi = Jodi.objects.get(id=int(jodi))
-            kwargs['jodi'] = jodi
+            kwargs['jodi_custom'] = jodi
             selected_jodi = jodi.jodi
-        UserJodi.objects.create(**kwargs)
+        created_jodi=UserJodi.objects.create(**kwargs)
         trending_list=view_trending()
-        
+        print created_jodi.id
+        print created_jodi.jodi_custom
         # Call to post on wall
         message='I have selected '+selected_jodi+' from JodiApp'
         picture_path='http://timesofindia.indiatimes.com/photo/16627860.cms'
-        graph.set('me/feed',message=message,picture=picture_path,link='http://google.com')
+        linkUrl=Site.objects.get(id=settings.SITE_ID).domain
+        linkUrl=linkUrl+reverse('vote',kwargs={'jodiid':created_jodi.id})
+#         linkUrl='www.google.com'
+        graph.set('me/feed',message=message,picture=picture_path,link=linkUrl)
         return render_to_response('treading_jodi.html', {'selected_jodi':selected_jodi, 'name':fb_profile.facebook_firstname,'trending_jodi':trending_list}, context_instance=RequestContext(request))
     
+def vote(request,jodiid):
+    print 'in vote'
+    print jodiid
+        
 def view_trending():
-    jodi_id_list = UserJodi.objects.values_list('jodi').annotate(dcount=Count('jodi'))
+#     jodi_id_list = UserJodi.objects.values_list('jodi').annotate(dcount=Count('jodi'))
     jodi_custom_list = UserJodi.objects.values_list('jodi_custom').annotate(dcount=Count('jodi_custom'))
     jodi_dict = {}
-    for jodi in jodi_id_list:
-        if jodi[0]:
-            key = Jodi.objects.get(id=jodi[0]).jodi
-            jodi_dict[key] = jodi[1]
+#     for jodi in jodi_id_list:
+#         if jodi[0]:
+#             key = Jodi.objects.get(id=jodi[0]).jodi
+#             jodi_dict[key] = jodi[1]
     for jodi in jodi_custom_list:
         if jodi[0]:
             jodi_dict[jodi[0]] = jodi[1]
