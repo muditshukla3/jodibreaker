@@ -7,7 +7,7 @@ class FacebookUserProfile(models.Model):
     facebook_firstname = models.CharField(max_length=255, blank=True, null=True)
     email=models.EmailField()
     city=models.CharField(max_length=100,null=True,blank=True)
-    mobile_no=models.BigIntegerField(blank=True, unique=True, null=True)
+    mobile_no=models.CharField(max_length=255, blank=True, null=True)
     
     def __unicode__(self):
         return self.facebook_firstname

@@ -13,8 +13,15 @@ import json
 
 @facebook_required()
 def home(request, graph):
-    firstName = '';
+    firstName = ''
+    templateName=''
     print 'in home view'
+    if '/fb/' in request.get_full_path():
+        templateName='/fb/from.html'
+    else:
+        templateName='from.html'
+       
+            
     if request.method == 'GET':
         me = graph.get('me')
         fbprofile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
@@ -34,19 +41,29 @@ def home(request, graph):
             FacebookUserProfile.objects.create(**kwargs)
         
         form = UserJodiForm()
-        
-        return render_to_response('from.html', {'facebookName':me['first_name'], 'form':form, 'facebookid':me['id']}, context_instance=RequestContext(request))
+
+        return render_to_response(templateName, {'facebookName':me['first_name'], 'form':form, 'facebookid':me['id']}, context_instance=RequestContext(request))
     else:
         return HTTPResponse('Bad Request')
 
 def index(request):
     message = 'Hello';
-    return render(request, 'index.html', {'message':message})
+    if '/fb/' in request.get_full_path():
+        templateName='/fb/index.html'
+    else:
+        templateName='index.html'
+    return render(request, templateName, {'message':message})
 
 @facebook_required
 def trendingjodi(request, graph):
     print 'in trending jodi'
-
+    
+    if '/fb/' in request.get_full_path():
+        templateName='/fb/treading_jodi.html'
+    else:
+        templateName='treading_jodi.html'
+        
+        
     if request.method == 'POST':
         jodi = request.POST.get('jodi')
         jodi_custom = request.POST.get('jodi_custom')
@@ -75,7 +92,10 @@ def trendingjodi(request, graph):
         linkUrl = linkUrl + reverse('vote', kwargs={'jodiid':created_jodi.id})
 #         linkUrl='www.google.com'
         graph.set('me/feed', message=message, picture=picture_path, link=linkUrl)
-        return render_to_response('treading_jodi.html', {'selected_jodi':selected_jodi, 'name':fb_profile.facebook_firstname, 'trending_jodi':trending_list}, context_instance=RequestContext(request))
+        
+        #finding rank of jodi
+        jodiRank = getJodiRank(created_jodi.id)
+        return render_to_response(templateName, {'selected_jodi':selected_jodi,'jodiRank':jodiRank, 'name':fb_profile.facebook_firstname, 'trending_jodi':trending_list}, context_instance=RequestContext(request))
     
 def vote(request, jodiid):
     print 'in vote'
@@ -96,10 +116,15 @@ def vote(request, jodiid):
             message = 1
             
     return HttpResponse(json.dumps({'status':message}), mimetype="application/json")                
-        
-        
-        
-        
+                
+def getJodiRank(jodi_id):
+    print 'in jodi rank'
+    jodi_id_list=''
+    if jodi_id:
+        jodi_id_list = list(UserJodi.objects.all().order_by('-counter').values_list('id',flat=True))
+        rank=jodi_id_list.index(jodi_id)
+        return rank
+                
 def view_trending():
 #     jodi_id_list = UserJodi.objects.values_list('jodi').annotate(dcount=Count('jodi'))
     jodi_custom_list = UserJodi.objects.values_list('jodi_custom').annotate(dcount=Count('jodi_custom'))
