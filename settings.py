@@ -110,7 +110,7 @@ MIDDLEWARE_CLASSES = (
     'django_facebook.middleware.FacebookCanvasMiddleWare',
 )
 
-ROOT_URLCONF = 'jodibreaker.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -126,7 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_facebook',
-    'jodibreaker.jodibreakerapp',    
+    'jodibreakerapp',    
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
@@ -163,7 +163,7 @@ LOGGING = {
         }
     },
     'loggers': {
-        'django.request': {
+     	   'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,

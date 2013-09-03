@@ -5,11 +5,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', 'jodibreaker.jodibreakerapp.views.index', name='index'),
-                       url(r'^home/', 'jodibreaker.jodibreakerapp.views.home', name='home'),
+                       url(r'^$', 'jodibreakerapp.views.index', name='index'),
+                       url(r'^home/', 'jodibreakerapp.views.home', name='home'),
 						url(r'^video/$', direct_to_template,{'template':'video.html'},name='video'),
-                       url(r'^trendingjodis/','jodibreaker.jodibreakerapp.views.trendingjodi',name='trendingjodi'),
-                       url(r'^vote/(?P<jodiid>\d+)$','jodibreaker.jodibreakerapp.views.voteView',name='voteView'),
+                       url(r'^trendingjodis/','jodibreakerapp.views.trendingjodi',name='trendingjodi'),
+                       url(r'^vote/(?P<jodiid>\d+)$','jodibreakerapp.views.voteView',name='voteView'),
                        url(r'^facebook/', include('django_facebook.urls')),
                        url(r'^accounts/', include('django_facebook.auth_urls')),
                        url(r'^admin/', include(admin.site.urls)),
