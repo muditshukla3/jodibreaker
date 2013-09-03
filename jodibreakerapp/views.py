@@ -9,13 +9,20 @@ from django_facebook.decorators import facebook_required
 from forms import UserJodiForm
 from httplib import HTTPResponse
 from models import FacebookUserProfile, Jodi, UserJodi, Vote
+import logging
 import json
 
+logger = logging.getLogger('view')
 @facebook_required()
 def home(request, graph):
     firstName = ''
     templateName=''
+    
+    
     print 'in home view'
+    
+    import pdb;pdb.set_trace()
+    
     if '/fb/' in request.get_full_path():
         templateName='/fb/from.html'
     else:
@@ -96,7 +103,23 @@ def trendingjodi(request, graph):
         #finding rank of jodi
         jodiRank = getJodiRank(created_jodi.id)
         return render_to_response(templateName, {'selected_jodi':selected_jodi,'jodiRank':jodiRank, 'name':fb_profile.facebook_firstname, 'trending_jodi':trending_list}, context_instance=RequestContext(request))
+
+
+@facebook_required
+def voteView(request, jodiid):
+    logger.info('in vote view')
+    logger.info('Jodi Id'+jodiid)
     
+    if '/fb/' in request.get_full_path():
+        templateName='/fb/vote.html'
+    else:
+        templateName='vote.html'
+        
+    userJodi=UserJodi.objects.get(id=int(jodiid))
+    
+    return render_to_response(templateName, {'jodi_creator':userJodi.profile.facebook_firstname ,'jodi':userJodi.jodi_custom}, context_instance=RequestContext(request))
+    
+        
 def vote(request, jodiid):
     print 'in vote'
     print jodiid
@@ -111,7 +134,7 @@ def vote(request, jodiid):
         else:
             kwargs = {'profile':profile, 'jodi_id':jodi}
             Vote.objects.create(**kwargs)
-            jodi.counter =jodi.counter+1
+            jodi.counter =jodi.counter + 1
             jodi.save()
             message = 1
             
