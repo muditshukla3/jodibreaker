@@ -57,18 +57,19 @@ div.rotator ul li.show {z-index:500}
 
 .right_contant {width:344px; height:400px; float:left;}
 .right_contant_text {font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#363636; line-height:21px; padding:20px 10px 0 15px; width:322px;}
-.right_top { width:200px; height:80px;}
+.right_top { width:200px; height:30px;float:right;}
 .rewarding {width:350px; height:30px;}
 
-.participate_hover {width:240px; height:65px; margin:35px 15px 8px 14px;}
-.participate_hover{width:240px; height:65px; margin:35px 15px 8px 14px; background:url(/media/images/pariticipate.png) no-repeat top; }
-.participate_hover:hover { margin:32px 10px 11px 11px; background-position:bottom;}
+.clear_logo {width:135px; height:40px; float:left; margin-top:0px; margin-left:25px;}
+
+.participate_hover{width:240px; height:65px; margin:15px 15px 3px 14px; background:url(/media/images/pariticipate.png) no-repeat top; }
+.participate_hover:hover { background-position:bottom;}
 
 .participate_hover_2 {width:230px; height:65px; margin:30px 17px 8px -5px;}
 .participate_hover_2{width:230px; height:65px; margin:30px 17px 8px -5px; background:url(/media/images/pariticipate.png) no-repeat top; }
 .participate_hover_2:hover { margin:27px 17px 8px -8px; background-position:bottom;}
 
-.terma_and_condition {width:180px; height:15px; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; float:right; margin-top:16px;}
+.terma_and_condition {width:180px; height:15px; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; float:right; margin-top:32px;}
 .terma_and_condition a{ float:right; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; text-decoration:none; margin-top:0px;}
 .terma_and_condition_2 {width:180px; height:15px; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; float:right; margin-top:21px;}
 .terma_and_condition_2 a{ float:right; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; text-decoration:none; margin-right:30px;}
@@ -86,7 +87,7 @@ div.rotator ul li.show {z-index:500}
 .middle_box {width:320px; height: 400px; float:left; margin:30px 0 0 300px;}
 .form_top {height:170px;}
 
-.garima_header {widows:300px; height:60px; margin-top:35px; border-bottom:1px solid #1f4999; }
+.garima_header {width:300px; height:60px; margin-top:35px; border-bottom:1px solid #1f4999; }
 .right_contant_2 {width:537px; height:500px; float:left; margin-left:19px; }
 h2 {font-size:24px; color:#215578; width:auto; float:left; font-weight:lighter; font-family:Arial, Helvetica, sans-serif; padding-left:15px;}
 .make {font-size:16px; color:#215578; font-weight:lighter; font-family:Arial, Helvetica, sans-serif;}
@@ -163,3 +164,58 @@ from_text {background: url(/media/images/form_box.png) no-repeat;padding: 5px;wi
 
 .odd {background:#ffce3f; height:15px; padding:3px 2px 2px 0px ; margin-left:-22px; list-style:none; }
 
+
+.contant_outer_tnc {
+    background: none repeat scroll 0 0 #FFC20F;
+    min-height: 1270px;float: left;
+}
+.right_contant_tnc_2 {
+    float: left;
+    height: 1231px;
+    margin-left: 20px;
+    width: 486px;
+}
+
+.garima_header_tnc {
+    float: right;
+    height: 30px;
+    margin-top: 125px;
+    width: 503px;
+}
+
+h3 {
+    color: #215578;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 24px;
+    font-weight: lighter;
+    width: auto;
+}
+
+.about h3,.garima_header_tnc h3{width:100%;float:left}
+.left_contain_tnc {width:443px; height:1367px; float:left; margin-left:20px; margin-top:0px;}
+.tnc_logo {padding:20px; margin-top:20px; width:150px; height:50px;}
+.about {font-size:12px; color:#215578; ; font-family:Arial, Helvetica, sans-serif; padding:10px; margin:10px; line-height:18px; height:966px;}
+.term_and_condition_contain {width:500px; height:auto; float:left;}
+.term_and_condition_contain ul{ width:445px; list-style-type:disc; float: left;padding: 0px;}
+.term_and_condition_contain li{font-size:12px; color:#215578; font-weight:lighter; font-family:Arial; padding:5px 10px 5px 0px; margin:5px 10px 5px 0px; line-height:18px; list-style-type:disc;}
+.foter_box {
+    height: 119px;
+    width: 960px;
+}
+.fotter_tnc {
+    background: url("/media/images/bg_card_blue.png") no-repeat scroll 0 0 transparent;
+    height: 109px;
+    margin: 0 auto;
+    position: relative;
+    width: 937px;
+    float: left;
+}
+.card_tnc {
+    float: left;
+    height: 170px;
+    margin: -85px 0 0 30px;
+    position: relative;
+    width: 180px;
+    z-index: 999;
+}
