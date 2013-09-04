@@ -219,3 +219,13 @@ h3 {
     width: 180px;
     z-index: 999;
 }
+.vote_contain_2 {
+    color: #134567;
+    float: left;
+    font-family: Arial;
+    font-size: 25px;
+    height: 28px;
+    line-height: 21px;
+    margin-top: 28px;
+    width: 203px;
+}
