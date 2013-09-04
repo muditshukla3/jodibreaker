@@ -53,8 +53,7 @@
     {%else%}    
 
    
-   	<div class="vote"><form method='POST' action={% url castVote %}>{% csrf_token %}
-   	<input type='hidden' name='jodiid' value={{jodiid}}/>
+   	<input type='hidden' name='jodiid' value='{{jodiid}}'/>
    	<input type='submit' name='submit' value='' class="vote_hover" style="border:none;"/>
    	
 
