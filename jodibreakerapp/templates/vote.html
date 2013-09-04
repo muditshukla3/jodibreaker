@@ -52,11 +52,12 @@
 
     {%else%}    
 
-   
+   <form>
+   <br/>
    	<input type='hidden' name='jodiid' value='{{jodiid}}'/>
    	<input type='submit' name='submit' value='' class="vote_hover" style="border:none;"/>
    	
-   	
+
    	</form></div>
      <div class="vote_contain">for this Rewarding Jodi and 
 help her win a trip to Goa.</div>
@@ -69,9 +70,13 @@ help her win a trip to Goa.</div>
      <div class="vote_participate_now"><a href="#" target="_blank"><div class="participate_hover_2"></div></a></div>
      </div>
 
-    </div>  
-   
-    <div class="terma_and_condition_2"><a href="{% url terms %}" target="_blank">Terms and Conditions apply.</a></div>
+    </div>
+
+    <div class="terma_and_condition_2"><a class="marright" href="{% url terms %}" target="_blank">Terms and Conditions apply</a>
+        <span>|</span><a class="marright" href="{% url about %}" target="_blank">About the Contest.</a><span>|</span>
+        <a href="{% url terms %}" target="_blank" >Leader Board.</a></div>
+
+    </div>
       
     </div>
 

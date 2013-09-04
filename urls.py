@@ -16,6 +16,7 @@ urlpatterns = patterns('',
                        url(r'^facebook/', include('django_facebook.urls')),
                        url(r'^accounts/', include('django_facebook.auth_urls')),
                         url(r'^terms/', direct_to_template,{'template':'term_and_condition.html'},name='terms'),
+                        url(r'^aboutus/', direct_to_template,{'template':'about.html'},name='about'),
                        url(r'^admin/', include(admin.site.urls)),
     # Examples:
     # url(r'^$', 'jodibreaker.views.home', name='home'),

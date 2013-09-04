@@ -1,0 +1,78 @@
+{% extends "layoutbase.html" %}
+
+{% block css.custom %}
+    <style type="text/css">
+
+    .poitee,.poitee_hand{display: none;}
+    .contant_outer_tnc,.left_contain_tnc{min-height:800px;height:800px}
+    </style>
+{% endblock css.custom %}
+
+{% block bodycontent %}
+
+<div class="contant_outer_tnc">
+      <div class="left_contain_tnc">
+        	<div class="tnc_logo"><a href="index.html"><img src="{{MEDIA_URL}}images/goa_jao_tnc.png" border="0"></a></div>
+            <div class="about">
+            <h3>About the contest</h3><br><br>
+
+     <strong>Rewarding Jodi Contest</strong> is a Facebook contest brought to you by American Express.
+     Between &lt;date&gt; and &lt;date&gt; ("Contest Period"), the contest will encourage users to select or create ‘Jodis’ on Facebook through the contest application, and get ‘Likes’ from friends. Contestants with highest ‘Likes’ on their ‘Jodis’ will stand a chance to win exciting prizes. 
+Participation <br>
+<br>
+<strong>Participation </strong><br>
+
+To participate in the contest, you have to create your favorite ‘Jodi’ or chose from the existing list of ‘Jodis’. You can then ask your friends to ‘Like’ your Jodi. If you get the maximum number of ‘Likes’ on your ‘Jodi’ during the contest period, you stand a chance to win the contest.<br><br>
+<strong>Winning</strong><br>
+
+The Eligible Contestant who gets the maximum ‘Likes’ on his/her ‘Jodi’ for the contest period, will be declared the winner. <br>
+<br>
+ 
+At any point in the contest, you can check the trending Contestants and their ‘Like’ scores on the Leaderboard page. <br><br>
+
+<strong>Notification</strong><br>
+
+
+All communication about the application will be published on the American Express Facebook page. Make sure you 'Like' the page to catch all the contest updates, tips and winner announcements on your Facebook Newsfeed. <br>
+<br>
+
+Lucky winners will also be informed via the e-mail ID shared on Facebook.<br>
+
+         
+            </div>
+      </div>
+        
+
+           
+
+      
+    </div>
+
+
+
+
+
+{% endblock bodycontent %}
+
+
+{% block footerbase %}
+<div class="foter_box">
+
+    <div class="fotter_tnc">
+        <div class="card_tnc"><a target="_blank" href="https://www.americanexpress.com/in/content/payback-card/">
+            <img border="0" src="{{ MEDIA_URL }}images/pay_back_card.png"></a></div>
+
+        <div class="fotter_text_2">
+            <div class="american_express"> The New American Express PAYBACK<sup>&reg;</sup> Credit Card</div>
+            <div class="rewards"> rewards you with points from both American Express and  PAYBACK -<br>
+                India’s largest loyalty programme.</div>
+
+
+        </div>
+        <div class="apply_now_tnc"><a target="_blank" href="https://www252.americanexpress.com/inga2/ind/pers/begin.do?perform=IntlEapp:IND:payback_credit&amp;linknav=IN-PaybackDetails-ApplyNow"><div class="apply_now_tnc_hover"></div></a></div>
+    </div>
+
+</div>
+    <div class="copyright">Copyright &copy; 2013 American Express Company</div>
+
+{% endblock footerbase %}

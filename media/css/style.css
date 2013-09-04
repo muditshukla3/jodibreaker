@@ -60,19 +60,21 @@ div.rotator ul li.show {z-index:500}
 .right_top { width:200px; height:30px;float:right;}
 .rewarding {width:350px; height:30px;}
 
-.clear_logo {width:135px; height:40px; float:left; margin-top:0px; margin-left:25px;}
+.clear_logo {width:350px; height:40px; float:left; margin-top:0px; margin-left:25px;}
 
-.participate_hover{width:240px; height:65px; margin:15px 15px 3px 14px; background:url(/media/images/pariticipate.png) no-repeat top; }
+.participate_hover{width:240px; height:65px; margin:0px 15px 3px 14px; background:url(/media/images/pariticipate.png) no-repeat top; }
 .participate_hover:hover { background-position:bottom;}
 
 .participate_hover_2 {width:230px; height:65px; margin:30px 17px 8px -5px;}
 .participate_hover_2{width:230px; height:65px; margin:30px 17px 8px -5px; background:url(/media/images/pariticipate.png) no-repeat top; }
 .participate_hover_2:hover { margin:27px 17px 8px -8px; background-position:bottom;}
 
-.terma_and_condition {width:180px; height:15px; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; float:right; margin-top:32px;}
+.terma_and_condition {width:180px; height:15px; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; float:right; margin-top:8px;}
 .terma_and_condition a{ float:right; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; text-decoration:none; margin-top:0px;}
-.terma_and_condition_2 {width:180px; height:15px; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; float:right; margin-top:21px;}
-.terma_and_condition_2 a{ float:right; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; text-decoration:none; margin-right:30px;}
+.terma_and_condition_2 {width:350px; height:15px; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; float:right; margin-top:21px;}
+.terma_and_condition_2 span{margin: 0px 5px ;
+    float: left;}
+.terma_and_condition_2 a{ float:left; font-size:10px; color:#363636; font-family:Arial, Helvetica, sans-serif; text-decoration:none;}
 .copyright {width:260px; float:right; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#134567; margin-right:0px;}
 
 .fotter {width:937px; margin:0px auto; background:url(/media/images/bg_card_blue.png) no-repeat; height:109px; }
@@ -167,13 +169,13 @@ from_text {background: url(/media/images/form_box.png) no-repeat;padding: 5px;wi
 
 .contant_outer_tnc {
     background: none repeat scroll 0 0 #FFC20F;
-    min-height: 1270px;float: left;
+    min-height: 1100px;float: left;
 }
 .right_contant_tnc_2 {
     float: left;
     height: 1231px;
     margin-left: 20px;
-    width: 486px;
+    width: 950px;
 }
 
 .garima_header_tnc {
@@ -193,11 +195,11 @@ h3 {
 }
 
 .about h3,.garima_header_tnc h3{width:100%;float:left}
-.left_contain_tnc {width:443px; height:1367px; float:left; margin-left:20px; margin-top:0px;}
+.left_contain_tnc {width:950px; height:1000px; float:left; margin-left:20px; margin-top:0px;}
 .tnc_logo {padding:20px; margin-top:20px; width:150px; height:50px;}
 .about {font-size:12px; color:#215578; ; font-family:Arial, Helvetica, sans-serif; padding:10px; margin:10px; line-height:18px; height:966px;}
-.term_and_condition_contain {width:500px; height:auto; float:left;}
-.term_and_condition_contain ul{ width:445px; list-style-type:disc; float: left;padding: 0px;}
+.term_and_condition_contain {width:950px; height:auto; float:left;}
+.term_and_condition_contain ul{ width:900px; list-style-type:disc; float: left;padding: 0px;}
 .term_and_condition_contain li{font-size:12px; color:#215578; font-weight:lighter; font-family:Arial; padding:5px 10px 5px 0px; margin:5px 10px 5px 0px; line-height:18px; list-style-type:disc;}
 .foter_box {
     height: 119px;
@@ -229,3 +231,5 @@ h3 {
     margin-top: 28px;
     width: 203px;
 }
+.marright{}
+.terma_and_condition span{float: left;margin:0px 5px}
