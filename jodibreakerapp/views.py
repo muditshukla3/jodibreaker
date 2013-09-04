@@ -20,8 +20,7 @@ def home(request, graph):
     
     
     print 'in home view'
-    
-    import pdb;pdb.set_trace()
+   
     
     if '/fb/' in request.get_full_path():
         templateName='/fb/from.html'
@@ -96,7 +95,7 @@ def trendingjodi(request, graph):
         message = 'I have selected ' + selected_jodi + ' from JodiApp'
         picture_path = 'http://timesofindia.indiatimes.com/photo/16627860.cms'
         linkUrl = Site.objects.get(id=settings.SITE_ID).domain
-        linkUrl = linkUrl + reverse('vote', kwargs={'jodiid':created_jodi.id})
+        linkUrl = linkUrl + reverse('voteView', kwargs={'jodiid':created_jodi.id})
 #         linkUrl='www.google.com'
         graph.set('me/feed', message=message, picture=picture_path, link=linkUrl)
         
@@ -105,11 +104,11 @@ def trendingjodi(request, graph):
         return render_to_response(templateName, {'selected_jodi':selected_jodi,'jodiRank':jodiRank, 'name':fb_profile.facebook_firstname, 'trending_jodi':trending_list}, context_instance=RequestContext(request))
 
 
-@facebook_required
-def voteView(request, jodiid):
+
+def voteView(request,jodiid):
     logger.info('in vote view')
     logger.info('Jodi Id'+jodiid)
-    
+    print 'in view vote ' + jodiid
     if '/fb/' in request.get_full_path():
         templateName='/fb/vote.html'
     else:
