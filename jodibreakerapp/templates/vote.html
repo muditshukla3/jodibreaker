@@ -32,25 +32,33 @@
                 -->
                 </ol>
                 
-                </div>
+                </div> 
           </div>
       
     <div class="right_contant_2">
     <div class="garima_header">	
-       <h2>Hi</h2>
+       <h2>Hi {% if message %}{{name}}{%endif%}</h2>
         <div class="facebook_icon"><a href="#" target="_blank"><img src="{{MEDIA_URL}}/images/facebook_icon.png" border="0"></a></div>
         <div class="clear"></div>
     </div>
-        
+    {% if message %}
+    {{message}}
+    {%else%}    
     <div class="make">Your friend {{jodi_creator}} chosen </div> 
       <div class="harmonium">{{jodi}}<br>
         <span class="text_blue_16"><p>as her rewarding Jodi.</p></span>
       </div>
    
-   	<div class="vote"><a href="#" ><div class="vote_hover"></div></a></div>
+   	<div class="vote"><form method='POST' action={% url castVote %}>{% csrf_token %}
+   	<input type='hidden' name='jodiid' value={{jodiid}}/>
+   	<input type='submit' name='submit' value='vote'/>
+   	
+   	<a href="#" ><div class="vote_hover"></div></a>
+   	</form></div>
      <div class="vote_contain">for this Rewarding Jodi and 
 help her win a trip to Goa.</div>
 	<div class="clear"></div>
+	{%endif%}
 	 <div class="trip_to_goa">
     
      <div class="trip_to_goa_contain">You too can win a<img src="{{MEDIA_URL}}/images/trip_to_goa.jpg" style="vertical-align:bottom;"><br>

@@ -11,7 +11,7 @@ urlpatterns = patterns('',
                        url(r'^trendingjodis/','jodibreakerapp.views.trendingjodi',name='trendingjodi'),
 
                        url(r'^vote/(?P<jodiid>\d+)$','jodibreakerapp.views.voteView',name='voteView'),
-
+                       url(r'^castvote/$','jodibreakerapp.views.castVote',name='castVote'),
 
                        url(r'^facebook/', include('django_facebook.urls')),
                        url(r'^accounts/', include('django_facebook.auth_urls')),
