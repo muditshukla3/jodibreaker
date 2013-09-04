@@ -121,11 +121,12 @@ def voteView(request, jodiid):
 @facebook_required        
 def castVote(request, graph):
     print 'in vote'
-   
+    print request.method   
     message = ''
     if request.method == 'POST':
         me = graph.get('me')
         profile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
+        print profile,'profile'
         kwargs = {'facebook_id':me['id']}
         if me.get('username'):
             kwargs['facebook_username'] = me['username']
@@ -140,13 +141,14 @@ def castVote(request, graph):
         kwargs['mobile_no'] = ''
         if not profile:
             profile=FacebookUserProfile.objects.create(**kwargs)
-            
-        jodi = UserJodi.objects.get(id=request.POST.get('jodiid'))
+        else:
+            profile=profile[0]    
+        jodi= UserJodi.objects.get(id=int(request.POST.get('jodiid')))
         vote = Vote.objects.filter(jodi=jodi, profile=profile)
         if vote:  # if already voted
             message = 'You have already voted for this jodi'
         else:  # if not voted
-            kwargs = {'profile':profile, 'jodi_id':jodi}
+            kwargs = {'profile':profile, 'jodi':jodi}
             Vote.objects.create(**kwargs)
             jodi.counter = jodi.counter + 1
             jodi.save()
