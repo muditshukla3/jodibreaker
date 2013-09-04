@@ -55,9 +55,9 @@
    
    	<div class="vote"><form method='POST' action={% url castVote %}>{% csrf_token %}
    	<input type='hidden' name='jodiid' value={{jodiid}}/>
-   	<input type='submit' name='submit' value='vote'/>
+   	<input type='submit' name='submit' value='' class="vote_hover" style="border:none;"/>
    	
-   	<a href="#" ><div class="vote_hover"></div></a>
+   	
    	</form></div>
      <div class="vote_contain">for this Rewarding Jodi and 
 help her win a trip to Goa.</div>
