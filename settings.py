@@ -18,9 +18,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'jodibreaker',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': 'root',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'USER': 'digiqom',                      # Not used with sqlite3.
+        'PASSWORD': 'appfactory',                  # Not used with sqlite3.
+        'HOST': 'digiqom.c0k2bnc9jima.ap-southeast-1.rds.amazonaws.com',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -36,7 +36,7 @@ ALLOWED_HOSTS = []
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Kolkata'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -110,7 +110,7 @@ MIDDLEWARE_CLASSES = (
     'django_facebook.middleware.FacebookCanvasMiddleWare',
 )
 
-ROOT_URLCONF = 'jodibreaker.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -126,7 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_facebook',
-    'jodibreaker.jodibreakerapp',    
+    'jodibreakerapp',    
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
@@ -163,7 +163,7 @@ LOGGING = {
         }
     },
     'loggers': {
-        'django.request': {
+     	   'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
