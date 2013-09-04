@@ -41,19 +41,22 @@
         <div class="facebook_icon"><a href="#" target="_blank"><img src="{{MEDIA_URL}}/images/facebook_icon.png" border="0"></a></div>
         <div class="clear"></div>
     </div>
-    {% if message %}
-    {{message}}
+
+        <div class="make">Your friend {{jodi_creator}} chosen </div>
+        <div class="harmonium">{{jodi}}<br>
+            <span class="text_blue_16"><p>as her rewarding Jodi.</p></span>
+        </div>
+
+        {% if message %}
+            <div class="vote_contain_2">{{message}}</div>
+
     {%else%}    
-    <div class="make">Your friend {{jodi_creator}} chosen </div> 
-      <div class="harmonium">{{jodi}}<br>
-        <span class="text_blue_16"><p>as her rewarding Jodi.</p></span>
-      </div>
+
    
-   	<div class="vote"><form method='POST' action={% url castVote %}>{% csrf_token %}
    	<input type='hidden' name='jodiid' value='{{jodiid}}'/>
-   	<input type='submit' name='submit' value='vote'/>
+   	<input type='submit' name='submit' value='' class="vote_hover" style="border:none;"/>
    	
-   	<a href="#" ><div class="vote_hover"></div></a>
+   	
    	</form></div>
      <div class="vote_contain">for this Rewarding Jodi and 
 help her win a trip to Goa.</div>
@@ -68,7 +71,7 @@ help her win a trip to Goa.</div>
 
     </div>  
    
-    <div class="terma_and_condition_2"><a href="#" target="_blank">Terms and Conditions apply.</a></div>
+    <div class="terma_and_condition_2"><a href="{% url terms %}" target="_blank">Terms and Conditions apply.</a></div>
       
     </div>
 
