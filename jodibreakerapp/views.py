@@ -12,6 +12,7 @@ from models import FacebookUserProfile, Jodi, UserJodi, Vote
 import logging
 import json
 
+
 logger = logging.getLogger('view')
 @facebook_required()
 def home(request, graph):
@@ -31,6 +32,7 @@ def home(request, graph):
     if request.method == 'GET':
         me = graph.get('me')
         fbprofile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
+        
         kwargs = {'facebook_id':me['id']}
         if me.get('username'):
             kwargs['facebook_username'] = me['username']
@@ -45,7 +47,11 @@ def home(request, graph):
         kwargs['mobile_no'] = ''
         if not fbprofile:
             FacebookUserProfile.objects.create(**kwargs)
-        
+        else:
+            jodi=UserJodi.objects.get(profile=fbProfile)
+            if jodi:
+                request.session['fb_id']=fbprofile.facebook_id
+                trendingjodi(request, graph)
         form = UserJodiForm()
 
         return render_to_response(templateName, {'facebookName':me['first_name'], 'form':form, 'facebookid':me['id']}, context_instance=RequestContext(request))
@@ -69,7 +75,13 @@ def trendingjodi(request, graph):
     else:
         templateName = 'treading_jodi.html'
         
-        
+    if request.method == 'GET':
+       fb_id=request.session['fb_id']
+       fbProfile=FacebookUserProfile.objects.get(facebook_id=fb_id)
+       jodi=UserJodi.objects.get(profile=fbProfile)
+       jodiRank=getJodiRank(jodi.id)
+       return render_to_response(templateName, {'selected_jodi':jodi.jodi_custom, 'jodiRank':jodiRank, 'name':fbProfile.facebook_firstname}, context_instance=RequestContext(request)) 
+            
     if request.method == 'POST':
         jodi = request.POST.get('jodi')
         jodi_custom = request.POST.get('jodi_custom')
@@ -92,6 +104,7 @@ def trendingjodi(request, graph):
         print created_jodi.id
         print created_jodi.jodi_custom
         # Call to post on wall
+
         #message = 'I have selected ' + selected_jodi + ' from JodiApp'
         message = 'I have chosen' + selected_jodi + 'as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
         picture_path = 'http://pointeeworld.com/media/images/goa_jao.png/'
@@ -100,7 +113,7 @@ def trendingjodi(request, graph):
         description = 'Please vote for my \'Jodi\' and make me win a free trip to Goa!'
 #         linkUrl='www.google.com'
         graph.set('me/feed', message=message, picture=picture_path, link=linkUrl, description=description)
-        
+
         # finding rank of jodi
         jodiRank = getJodiRank(created_jodi.id)
         return render_to_response(templateName, {'selected_jodi':selected_jodi, 'jodiRank':jodiRank, 'name':fb_profile.facebook_firstname, 'trending_jodi':trending_list}, context_instance=RequestContext(request))

@@ -172,5 +172,6 @@ LOGGING = {
 }
 FACEBOOK_APP_ID = '564979820231984'
 FACEBOOK_APP_SECRET = 'ec61bd5a609d6830ee958c051f05c76a'
-FACEBOOK_CANVAS_PAGE = 'https://apps.facebook.com/%s/' % FACEBOOK_APP_ID
+#FACEBOOK_CANVAS_PAGE = 'https://apps.facebook.com/%s/' % FACEBOOK_APP_ID
+FACEBOOK_CANVAS_PAGE = 'http://www.pointeeworld.com/'
 FACEBOOK_DEFAULT_SCOPE = ['email','publish_stream','user_location','publish_actions']
