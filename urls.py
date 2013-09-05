@@ -5,19 +5,18 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', 'jodibreakerapp.views.index', name='index'),
-                       url(r'^home/', 'jodibreakerapp.views.home', name='home'),
-						url(r'^video/$', direct_to_template,{'template':'video.html'},name='video'),
-                       url(r'^trendingjodis/','jodibreakerapp.views.trendingjodi',name='trendingjodi'),
+                        url(r'^$', 'jodibreakerapp.views.index', name='index'),
+                        url(r'^home/', 'jodibreakerapp.views.home', name='home'),
+                        url(r'^video/$', direct_to_template,{'template':'video.html'},name='video'),
+                        url(r'^trendingjodis/','jodibreakerapp.views.trendingjodi',name='trendingjodi'),
+                        url(r'^vote/(?P<jodiid>\d+)/$','jodibreakerapp.views.voteView',name='voteView'),
+                        url(r'^castvote/$','jodibreakerapp.views.castVote',name='castVote'),
 
-                       url(r'^vote/(?P<jodiid>\d+)$','jodibreakerapp.views.voteView',name='voteView'),
-                       url(r'^castvote/$','jodibreakerapp.views.castVote',name='castVote'),
-
-                       url(r'^facebook/', include('django_facebook.urls')),
-                       url(r'^accounts/', include('django_facebook.auth_urls')),
+                        url(r'^facebook/', include('django_facebook.urls')),
+                        url(r'^accounts/', include('django_facebook.auth_urls')),
                         url(r'^terms/', direct_to_template,{'template':'term_and_condition.html'},name='terms'),
                         url(r'^aboutus/', direct_to_template,{'template':'about.html'},name='about'),
-                       url(r'^admin/', include(admin.site.urls)),
+                        url(r'^admin/', include(admin.site.urls)),
     # Examples:
     # url(r'^$', 'jodibreaker.views.home', name='home'),
     # url(r'^jodibreaker/', include('jodibreaker.foo.urls')),

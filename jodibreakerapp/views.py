@@ -95,7 +95,7 @@ def trendingjodi(request, graph):
         message = 'I have selected ' + selected_jodi + ' from JodiApp'
         picture_path = 'http://timesofindia.indiatimes.com/photo/16627860.cms'
         linkUrl = Site.objects.get(id=settings.SITE_ID).domain
-        linkUrl = linkUrl + reverse('voteView', kwargs={'jodiid':created_jodi.id})
+        linkUrl = linkUrl + reverse('voteView', kwargs={'jodiid':created_jodi.id})+'/'
 #         linkUrl='www.google.com'
         graph.set('me/feed', message=message, picture=picture_path, link=linkUrl)
         
