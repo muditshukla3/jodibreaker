@@ -48,10 +48,10 @@ def home(request, graph):
         if not fbprofile:
             FacebookUserProfile.objects.create(**kwargs)
         else:
-            jodi=UserJodi.objects.get(profile=fbProfile)
+            jodi=UserJodi.objects.filter(profile=fbprofile[0])
             if jodi:
-                request.session['fb_id']=fbprofile.facebook_id
-                trendingjodi(request, graph)
+                request.session['fb_id']=fbprofile[0].facebook_id
+                return trendingjodi(request, graph)
         form = UserJodiForm()
 
         return render_to_response(templateName, {'facebookName':me['first_name'], 'form':form, 'facebookid':me['id']}, context_instance=RequestContext(request))
