@@ -3,7 +3,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.db.models.aggregates import Count
 from django.http import HttpResponse
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response, render, redirect
 from django.template import RequestContext
 from django_facebook.decorators import facebook_required
 from forms import UserJodiForm
@@ -11,11 +11,13 @@ from httplib import HTTPResponse
 from models import FacebookUserProfile, Jodi, UserJodi, Vote
 import logging
 import json
+import urllib2
 
 
 logger = logging.getLogger('view')
 @facebook_required()
 def home(request, graph):
+    
     firstName = ''
     templateName = ''
     
@@ -59,6 +61,15 @@ def home(request, graph):
         return HTTPResponse('Bad Request')
 
 def index(request):
+    if request.session.get("voteid") and request.method == 'GET':
+        url = request.session.get("voteid")[2:]
+        url = urllib2.unquote(url)
+        url_lst = url.split("&")
+        if len(url_lst) >1:
+            url = url_lst[0]
+
+        del request.session["voteid"]
+        return redirect(url)
     message = 'Hello';
     if '/fb/' in request.get_full_path():
         templateName = '/fb/index.html'
@@ -68,7 +79,7 @@ def index(request):
 
 @facebook_required
 def trendingjodi(request, graph):
-    print 'in trending jodi'
+
     
     if '/fb/' in request.get_full_path():
         templateName = '/fb/treading_jodi.html'
@@ -107,9 +118,10 @@ def trendingjodi(request, graph):
 
         #message = 'I have selected ' + selected_jodi + ' from JodiApp'
         message = 'I have chosen' + selected_jodi + 'as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
-        picture_path = 'http://pointeeworld.com/media/images/goa_jao.png/'
-        linkUrl = Site.objects.get(id=settings.SITE_ID).domain
-        linkUrl = linkUrl + reverse('voteView', kwargs={'jodiid':created_jodi.id})+'/'
+        picture_path = 'http://www.pointeeworld.com/media/images/goa_jao.png/'
+        #linkUrl = Site.objects.get(id=settings.SITE_ID).domain
+        #linkUrl = linkUrl + reverse('voteView', kwargs={'jodiid':created_jodi.id})+'/'
+        linkUrl = 'http://www.pointeeworld.com/' + reverse('voteView', kwargs={'jodiid':created_jodi.id})+'/'
         description = 'Please vote for my \'Jodi\' and make me win a free trip to Goa!'
 #         linkUrl='www.google.com'
         graph.set('me/feed', message=message, picture=picture_path, link=linkUrl, description=description)
@@ -121,9 +133,8 @@ def trendingjodi(request, graph):
 
 
 def voteView(request, jodiid):
-    logger.info('in vote view')
-    logger.info('Jodi Id' + jodiid)
-    print 'in view vote ' + jodiid
+
+
     if '/fb/' in request.get_full_path():
         templateName = '/fb/vote.html'
     else:
@@ -135,13 +146,11 @@ def voteView(request, jodiid):
     
 @facebook_required        
 def castVote(request, graph):
-    print 'in vote'
-    print request.method   
     message = ''
     if request.method == 'POST':
         me = graph.get('me')
         profile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
-        print profile,'profile'
+
         kwargs = {'facebook_id':me['id']}
         if me.get('username'):
             kwargs['facebook_username'] = me['username']
@@ -159,6 +168,7 @@ def castVote(request, graph):
         else:
             profile=profile[0]    
         jodi= UserJodi.objects.get(id=int(request.POST.get('jodiid')))
+
         vote = Vote.objects.filter(jodi=jodi, profile=profile)
         if vote:  # if already voted
             message = 'You have already voted for this jodi'
@@ -167,7 +177,7 @@ def castVote(request, graph):
             Vote.objects.create(**kwargs)
             jodi.counter = jodi.counter + 1
             jodi.save()
-            message = 'Your vote has been casted'
+            message = 'Thanks for Voting'
       
     return render_to_response('vote.html', {'message':message,'name':profile.facebook_firstname}, context_instance=RequestContext(request))      
 #     return HttpResponse(json.dumps({'status':message}), mimetype="application/json")                

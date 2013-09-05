@@ -52,7 +52,7 @@
 
     {%else%}    
 
-   <form>
+   <form action="{% url castVote %}" method="post">
    <br/>
    	<input type='hidden' name='jodiid' value='{{jodiid}}'/>
    	<input type='submit' name='submit' value='' class="vote_hover" style="border:none;"/>
