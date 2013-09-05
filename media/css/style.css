@@ -99,7 +99,7 @@ h2 {font-size:24px; color:#215578; width:auto; float:left; font-weight:lighter; 
 
 .fancybox-skin {width:550px !important; height:316px; margin-top:0px;}
 img a{outline:none;}
-a {outline:}
+a {outline:none}
 
 #fancybox-content{height: 240px !important; background:#ffc20f !important; width:518px !important; }
 
@@ -111,11 +111,11 @@ span.customSelect.changed {	background-color: #f0dea4; padding:10px 0 0 0px;}
 
 span.customSelect {	font-size:13px;	background-color: #ffda6f;	color:#333;	padding:12px 10px;	border:1px solid #ebb20e;-moz-border-radius: 5px;-webkit-border-radius: 5px;	border-radius: 7px 7px; font-family:Arial, Helvetica, sans-serif; width:185px; height:30px;	}
 span.customSelect.changed {	background-color: #f0dea4; }
-.customSelectInner {background:url(/media/images/customSelect-arrow.gif) no-repeat center right; width:130px;padding:0px 50px 0 0;}
+.customSelectInner {background:none; width:130px;padding:0px 50px 0 0;}
 option {background:#ffda6f; }
 	
 .or { width:26px; height:10px; font-size:16px; color:12px; float:left; padding:11px 4px 0 24px; margin-right:-21px; }
-from_text {background: url(/media/images/form_box.png) no-repeat;padding: 5px;width: 213px !important;border: none;height: 30px; color:#7c7c7c;}
+.from_text {background: url(/media/images/form_box.png) no-repeat;padding: 5px;width: 213px !important;border: none;height: 30px; color:#7c7c7c;}
 .form_imformation {font-size:11px; color:#636363;padding:7px 5px 5px 24px; font-family:Arial, Helvetica, sans-serif; width:180px; }
 
 .continue_hover {float:right; margin:20px 30px 0px 0px;}

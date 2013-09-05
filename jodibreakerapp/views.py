@@ -117,7 +117,7 @@ def trendingjodi(request, graph):
         # Call to post on wall
 
         #message = 'I have selected ' + selected_jodi + ' from JodiApp'
-        message = 'I have chosen' + selected_jodi + 'as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
+        message = 'I have chosen ' + selected_jodi + ' as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
         picture_path = 'http://www.pointeeworld.com/media/images/goa_jao.png/'
         #linkUrl = Site.objects.get(id=settings.SITE_ID).domain
         #linkUrl = linkUrl + reverse('voteView', kwargs={'jodiid':created_jodi.id})+'/'
