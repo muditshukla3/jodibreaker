@@ -12,6 +12,7 @@ from models import FacebookUserProfile, Jodi, UserJodi, Vote
 import logging
 import json
 
+
 logger = logging.getLogger('view')
 @facebook_required()
 def home(request, graph):
@@ -108,7 +109,7 @@ def trendingjodi(request, graph):
         linkUrl = Site.objects.get(id=settings.SITE_ID).domain
         linkUrl = linkUrl + reverse('voteView', kwargs={'jodiid':created_jodi.id})
         description='Please vote for my Jodi and make me win a free trip to Goa!'
-#         linkUrl='www.google.com'
+
         graph.set('me/feed', message=message, picture=picture_path, link=linkUrl,description=description)
         
         # finding rank of jodi
