@@ -92,12 +92,14 @@ def trendingjodi(request, graph):
         print created_jodi.id
         print created_jodi.jodi_custom
         # Call to post on wall
-        message = 'I have selected ' + selected_jodi + ' from JodiApp'
-        picture_path = 'http://timesofindia.indiatimes.com/photo/16627860.cms'
+        #message = 'I have selected ' + selected_jodi + ' from JodiApp'
+        message = 'I have chosen' + selected_jodi + 'as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
+        picture_path = 'http://pointeeworld.com/media/images/goa_jao.png/'
         linkUrl = Site.objects.get(id=settings.SITE_ID).domain
         linkUrl = linkUrl + reverse('voteView', kwargs={'jodiid':created_jodi.id})+'/'
+        description = 'Please vote for my \'Jodi\' and make me win a free trip to Goa!'
 #         linkUrl='www.google.com'
-        graph.set('me/feed', message=message, picture=picture_path, link=linkUrl)
+        graph.set('me/feed', message=message, picture=picture_path, link=linkUrl, description=description)
         
         # finding rank of jodi
         jodiRank = getJodiRank(created_jodi.id)
