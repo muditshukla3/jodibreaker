@@ -9,6 +9,8 @@ from django_facebook.decorators import facebook_required
 from forms import UserJodiForm
 from httplib import HTTPResponse
 from models import FacebookUserProfile, Jodi, UserJodi, Vote
+from random import randint
+
 import logging
 import json
 import urllib2
@@ -17,24 +19,15 @@ import urllib2
 logger = logging.getLogger('view')
 @facebook_required()
 def home(request, graph):
-    
     firstName = ''
     templateName = ''
-    
-    
-    print 'in home view'
-   
-    
     if '/fb/' in request.get_full_path():
         templateName = '/fb/from.html'
     else:
         templateName = 'from.html'
-       
-            
     if request.method == 'GET':
         me = graph.get('me')
         fbprofile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
-        
         kwargs = {'facebook_id':me['id']}
         if me.get('username'):
             kwargs['facebook_username'] = me['username']
@@ -53,7 +46,7 @@ def home(request, graph):
             jodi=UserJodi.objects.filter(profile=fbprofile[0])
             if jodi:
                 request.session['fb_id']=fbprofile[0].facebook_id
-                return trendingjodi(request, graph)
+                return trendingjodi(request, graph, redirect=1)
         form = UserJodiForm()
 
         return render_to_response(templateName, {'facebookName':me['first_name'], 'form':form, 'facebookid':me['id']}, context_instance=RequestContext(request))
@@ -62,11 +55,13 @@ def home(request, graph):
 
 def index(request):
     if request.session.get("voteid") and request.method == 'GET':
-        url = request.session.get("voteid")[2:]
-        url = urllib2.unquote(url)
-        url_lst = url.split("&")
-        if len(url_lst) >1:
-            url = url_lst[0]
+        url = request.session.get("voteid")
+#         url = 'www.pointeeworld.com' + url
+#         url = request.session.get("voteid")[2:]
+#         url = urllib2.unquote(url)
+#         url_lst = url.split("&")
+#         if len(url_lst) >1:
+#             url = url_lst[0]
 
         del request.session["voteid"]
         return redirect(url)
@@ -77,10 +72,38 @@ def index(request):
         templateName = 'index.html'
     return render(request, templateName, {'message':message})
 
-@facebook_required
-def trendingjodi(request, graph):
-
+def get_random_desc():
+    desc_dict = {1:"Please vote for my 'Jodi' and make me win a free trip to Goa!",
+                 2:"Vote for my favorite 'Jodi' to help me win a free trip to Goa.",
+                 3:"Help me win this contest by voting for my favorite 'Jodi'. Winners get a free trip to Goa."}
+    return desc_dict[randint(1,3)]
     
+
+def post_on_wall(*args):
+    
+    graph = args[0]
+    message = 'I have chosen ' + args[1] + ' as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
+    picture_path = 'http://www.pointeeworld.com/media/images/goa_jao.png/'
+    linkUrl = 'http://www.pointeeworld.com/' + reverse('voteView', kwargs={'jodiid':args[2]})+'/'
+    description = get_random_desc()
+    graph.set('me/feed', message=message, picture=picture_path, link=linkUrl, description=description)
+
+@facebook_required
+def view_wallpost(request, graph):
+    msg = '0'
+    if request.method == 'POST':
+        jodi_id = request.POST.get('sharenow')
+        jodi = UserJodi.objects.filter(id=int(jodi_id))
+        if jodi:
+            me = graph.get('me')
+            fbprofile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
+            if fbprofile[0] and jodi[0].profile.id == fbprofile[0].id:
+                post_on_wall(graph, jodi[0].jodi_custom, jodi[0].id)
+                msg = '1'
+    return HttpResponse(json.dumps({'message':msg}),mimetype="application/json")
+
+@facebook_required
+def trendingjodi(request, graph, redirect=None):
     if '/fb/' in request.get_full_path():
         templateName = '/fb/treading_jodi.html'
     else:
@@ -88,12 +111,9 @@ def trendingjodi(request, graph):
         
     if request.method == 'GET':
        fb_id=request.session['fb_id']
-       fbProfile=FacebookUserProfile.objects.get(facebook_id=fb_id)
-       jodi=UserJodi.objects.get(profile=fbProfile)
-       jodiRank=getJodiRank(jodi.id)
-       return render_to_response(templateName, {'selected_jodi':jodi.jodi_custom, 'jodiRank':jodiRank, 'name':fbProfile.facebook_firstname}, context_instance=RequestContext(request)) 
-            
-    if request.method == 'POST':
+       fb_profile=FacebookUserProfile.objects.get(facebook_id=fb_id)
+       jodi=UserJodi.objects.get(profile=fb_profile)
+    else:
         jodi = request.POST.get('jodi')
         jodi_custom = request.POST.get('jodi_custom')
         fb_profile = FacebookUserProfile.objects.get(facebook_id=request.POST.get('fb_id'))
@@ -101,52 +121,38 @@ def trendingjodi(request, graph):
         if mobile:
             fb_profile.mobile_no = mobile
             fb_profile.save()
-            
         kwargs = {'profile':fb_profile}
         if jodi_custom:
             kwargs['jodi_custom'] = jodi_custom
-            selected_jodi = jodi_custom
         else:
             jodi = Jodi.objects.get(id=int(jodi))
-            kwargs['jodi_custom'] = jodi
-            selected_jodi = jodi.jodi
-        created_jodi = UserJodi.objects.create(**kwargs)
-        trending_list = view_trending()
-        print created_jodi.id
-        print created_jodi.jodi_custom
+            kwargs['jodi_custom'] = jodi.jodi
+        jodi = UserJodi.objects.create(**kwargs)
         # Call to post on wall
-
-        #message = 'I have selected ' + selected_jodi + ' from JodiApp'
-        message = 'I have chosen ' + selected_jodi + ' as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
-        picture_path = 'http://www.pointeeworld.com/media/images/goa_jao.png/'
-        #linkUrl = Site.objects.get(id=settings.SITE_ID).domain
-        #linkUrl = linkUrl + reverse('voteView', kwargs={'jodiid':created_jodi.id})+'/'
-        linkUrl = 'http://www.pointeeworld.com/' + reverse('voteView', kwargs={'jodiid':created_jodi.id})+'/'
-        description = 'Please vote for my \'Jodi\' and make me win a free trip to Goa!'
-#         linkUrl='www.google.com'
-        graph.set('me/feed', message=message, picture=picture_path, link=linkUrl, description=description)
-
+        post_on_wall(graph,jodi.jodi_custom, jodi.id)
         # finding rank of jodi
-        jodiRank = getJodiRank(created_jodi.id)
-        return render_to_response(templateName, {'selected_jodi':selected_jodi, 'jodiRank':jodiRank, 'name':fb_profile.facebook_firstname, 'trending_jodi':trending_list}, context_instance=RequestContext(request))
+    jodiRank = getJodiRank(jodi.id)
+    data = {'selected_jodi':jodi, 'jodiRank':jodiRank, 
+            'name':fb_profile.facebook_firstname, 'redirect':redirect}
+    return render_to_response(templateName, data, context_instance=RequestContext(request))
 
 
 
 def voteView(request, jodiid):
-
-
     if '/fb/' in request.get_full_path():
         templateName = '/fb/vote.html'
     else:
         templateName = 'vote.html'
-        
     userJodi = UserJodi.objects.get(id=int(jodiid))
-    
-    return render_to_response(templateName, {'jodi_creator':userJodi.profile.facebook_firstname , 'jodi':userJodi.jodi_custom,'jodiid':userJodi.id}, context_instance=RequestContext(request))
+    data = {'jodi_creator':userJodi.profile.facebook_firstname , 
+            'jodi':userJodi.jodi_custom,
+            'jodiid':userJodi.id}
+    return render_to_response(templateName, data, context_instance=RequestContext(request))
     
 @facebook_required        
 def castVote(request, graph):
     message = ''
+    import pdb;pdb.set_trace()
     if request.method == 'POST':
         me = graph.get('me')
         profile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
@@ -170,7 +176,9 @@ def castVote(request, graph):
         jodi= UserJodi.objects.get(id=int(request.POST.get('jodiid')))
 
         vote = Vote.objects.filter(jodi=jodi, profile=profile)
-        if vote:  # if already voted
+        if profile == jodi.profile:
+            message = 'You can not voted on your jodi'
+        elif vote:  # if already voted
             message = 'You have already voted for this jodi'
         else:  # if not voted
             kwargs = {'profile':profile, 'jodi':jodi}
@@ -183,7 +191,7 @@ def castVote(request, graph):
 #     return HttpResponse(json.dumps({'status':message}), mimetype="application/json")                
                 
 def getJodiRank(jodi_id):
-    print 'in jodi rank'
+    rank = 0
     jodi_id_list = ''
     if jodi_id:
         jodi_id_list = list(UserJodi.objects.all().order_by('-counter').values_list('id', flat=True))
@@ -191,13 +199,8 @@ def getJodiRank(jodi_id):
         return rank
                 
 def view_trending():
-#     jodi_id_list = UserJodi.objects.values_list('jodi').annotate(dcount=Count('jodi'))
     jodi_custom_list = UserJodi.objects.values_list('jodi_custom').annotate(dcount=Count('jodi_custom'))
     jodi_dict = {}
-#     for jodi in jodi_id_list:
-#         if jodi[0]:
-#             key = Jodi.objects.get(id=jodi[0]).jodi
-#             jodi_dict[key] = jodi[1]
     for jodi in jodi_custom_list:
         if jodi[0]:
             jodi_dict[jodi[0]] = jodi[1]

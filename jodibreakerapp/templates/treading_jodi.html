@@ -44,19 +44,22 @@
     </div>
     
     <div class="make">Thank you for submitting your favorite Jodi</div>
-    <div class="harmonium">{{selected_jodi}}</div>
+    <div class="harmonium">{{selected_jodi.jodi}}</div>
    	<div class="your_jodi">
            Your Jodi is at rank {{jodiRank}} in the Rewarding Jodi Batao Contest.
            </div>
 	
     <div class="hurry">You can share your Jodi again and get more votes from your friends.</div>
-      	
+     <form method='POST' action='{% url post_on_wall %}'>
+     <input type='hidden' name='sharenow' value='{{selected_jodi.id}}'/>
+     <input type='submit' name='submit' value='share now'>
+     </form>
     <div class="share_now"><a href="vote.html"><div class="share_now_hover"></div></a></div>
     
     </div>
 
     <div class="terma_and_condition_2"><a href="{% url terms %}" target="_blank" >Leader Board</a> <span>|</span>
-        <a class="marright" href="{% url about %}" target="_blank">About the Contest</a><span>|</span>
+        <a class="marright" hrpost_on_wallef="{% url about %}" target="_blank">About the Contest</a><span>|</span>
         <a class="marright" href="{% url terms %}" target="_blank">Terms and Conditions</a></div>
 
 </div>
