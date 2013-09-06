@@ -90,6 +90,7 @@ def post_on_wall(*args):
 
 @facebook_required
 def view_wallpost(request, graph):
+
     msg = '0'
     if request.method == 'POST':
         jodi_id = request.POST.get('sharenow')
@@ -139,6 +140,7 @@ def trendingjodi(request, graph, redirect=None):
 
 
 def voteView(request, jodiid):
+
     if '/fb/' in request.get_full_path():
         templateName = '/fb/vote.html'
     else:
@@ -149,12 +151,14 @@ def voteView(request, jodiid):
             'jodiid':userJodi.id}
     return render_to_response(templateName, data, context_instance=RequestContext(request))
     
-@facebook_required        
+@facebook_required
 def castVote(request, graph):
-    message = ''
-    import pdb;pdb.set_trace()
-    if request.method == 'POST':
+
+        message = ''
+
+    #if request.method == 'POST':
         me = graph.get('me')
+
         profile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
 
         kwargs = {'facebook_id':me['id']}
@@ -173,7 +177,7 @@ def castVote(request, graph):
             profile=FacebookUserProfile.objects.create(**kwargs)
         else:
             profile=profile[0]    
-        jodi= UserJodi.objects.get(id=int(request.POST.get('jodiid')))
+        jodi= UserJodi.objects.get(id=int(request.GET.get('jodiid')))
 
         vote = Vote.objects.filter(jodi=jodi, profile=profile)
         if profile == jodi.profile:
@@ -187,7 +191,7 @@ def castVote(request, graph):
             jodi.save()
             message = 'Thanks for Voting'
       
-    return render_to_response('vote.html', {'message':message,'name':profile.facebook_firstname}, context_instance=RequestContext(request))      
+        return render_to_response('vote.html', {'message':message,'jodi':jodi.jodi_custom,'name':profile.facebook_firstname}, context_instance=RequestContext(request))
 #     return HttpResponse(json.dumps({'status':message}), mimetype="application/json")                
                 
 def getJodiRank(jodi_id):

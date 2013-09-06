@@ -114,7 +114,7 @@ span.customSelect.changed {	background-color: #f0dea4; }
 .customSelectInner {background:none; width:130px;padding:0px 50px 0 0;}
 option {background:#ffda6f; }
 	
-.or { width:26px; height:10px; font-size:16px; color:12px; float:left; padding:11px 4px 0 24px; margin-right:-21px; }
+.or { width:26px; height:10px; font-size:16px;  float:left; padding:11px 4px 0 24px; margin-right:-21px; }
 .from_text {background: url(/media/images/form_box.png) no-repeat;padding: 5px;width: 213px !important;border: none;height: 30px; color:#7c7c7c;}
 .form_imformation {font-size:11px; color:#636363;padding:7px 5px 5px 24px; font-family:Arial, Helvetica, sans-serif; width:180px; }
 
@@ -131,9 +131,9 @@ option {background:#ffda6f; }
 .skip {width:50px; height:80px; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#000; float:left; margin-top:20px;}
 .sumit {width:100px; height:100px; float:left;  margin-top:10px;}
 
-.fancybox-wrap {height: auto;  left: 358px;  opacity: 1;  overflow: visible;  position: bsolute;   top: 131px;    width: 500px;}
+.fancybox-wrap {height: auto;  left: 358px;  opacity: 1;  overflow: visible;  position: absolute;   top: 131px;    width: 500px;}
 
-.styled hasCustomSelect {width:209 !important;}
+.styled .hasCustomSelect {width:209 !important;}
 .fancybox-inner {width:551px !important; height:270px !important;}
 .styled hasCustomSelect {width:219px !important;}
 

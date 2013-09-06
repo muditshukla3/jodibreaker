@@ -12,3 +12,18 @@ $('.cls_continue_mob').on('click',function(){
     else { $('input[name=mobile_no]').val('');}
     $('#user_jodi').submit();
 });
+
+
+$('.shareagain').on('click',function(){
+    var j = $(this);
+    j.SRC = 'http://www.pointeeworld.com/wallpost/';
+    j.DATA = {'sharenow':j.data('jodiid')};
+    $f.makeRequest(j,function(r){
+        if(r.message == 1){
+
+            $('.cls_msg').dialog({width:500,autoOpen:false,height:200,modal:true});
+            $('.cls_msg').dialog('open');
+            $('.right_just').css({height:'100px'});
+        }
+    });
+})

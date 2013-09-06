@@ -50,11 +50,12 @@
            </div>
 	
     <div class="hurry">You can share your Jodi again and get more votes from your friends.</div>
-     <form method='POST' action='{% url post_on_wall %}'>
-     <input type='hidden' name='sharenow' value='{{selected_jodi.id}}'/>
-     <input type='submit' name='submit' value='share now'>
-     </form>
-    <div class="share_now"><a href="vote.html"><div class="share_now_hover"></div></a></div>
+
+
+         <div class="share_now"><input data-jodiid="{{selected_jodi.id}}"  type='submit' class="shareagain share_now_hover" style="border: 0px;"  name='submit' value=''></div>
+
+
+
     
     </div>
 
@@ -64,5 +65,12 @@
 
 </div>
       
+    </div>
+
+    <div class="box cls_msg disable">
+
+        <div class="right_just">You have successfully shared your jodi .
+        </div>
+
     </div>
 {% endblock bodycontent %}
