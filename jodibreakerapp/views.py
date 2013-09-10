@@ -80,11 +80,11 @@ def get_random_desc():
     
 
 def post_on_wall(*args):
-    
     graph = args[0]
     message = 'I have chosen ' + args[1] + ' as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
     picture_path = 'http://www.pointeeworld.com/media/images/goa_jao.png/'
-    linkUrl = 'http://www.pointeeworld.com/' + reverse('voteView', kwargs={'jodiid':args[2]})+'/'
+    domain = Site.objects.get_current()
+    linkUrl = domain.name + reverse('voteView', kwargs={'jodiid':args[2]})+'/'
     description = get_random_desc()
     graph.set('me/feed', message=message, picture=picture_path, link=linkUrl, description=description)
 
@@ -111,18 +111,27 @@ def trendingjodi(request, graph, redirect=None):
         templateName = 'treading_jodi.html'
         
     if request.method == 'GET':
-       fb_id=request.session['fb_id']
-       fb_profile=FacebookUserProfile.objects.get(facebook_id=fb_id)
-       jodi=UserJodi.objects.get(profile=fb_profile)
+        fb_id=request.session.get('fb_id',None)
+        fb_profile=FacebookUserProfile.objects.filter(facebook_id=fb_id)
+        if fb_profile:
+            try:
+                jodi=UserJodi.objects.get(profile=fb_profile[0])
+            except MultipleObjectsReturned:
+               return HttpResponse('I dont know what to do!') 
+        else:
+            return HttpResponse('Wrong data')
     else:
         jodi = request.POST.get('jodi')
         jodi_custom = request.POST.get('jodi_custom')
-        fb_profile = FacebookUserProfile.objects.get(facebook_id=request.POST.get('fb_id'))
+        fb_profile = FacebookUserProfile.objects.filter(facebook_id=request.POST.get('fb_id'))
         mobile = request.POST.get('mobile_no')
-        if mobile:
-            fb_profile.mobile_no = mobile
-            fb_profile.save()
-        kwargs = {'profile':fb_profile}
+        if fb_profile:
+            if mobile:
+                fb_profile[0].mobile_no = mobile
+                fb_profile[0].save()
+            kwargs = {'profile':fb_profile[0]}
+        else:
+            return HttpResponse('Wrong data')
         if jodi_custom:
             kwargs['jodi_custom'] = jodi_custom
         else:
@@ -131,12 +140,12 @@ def trendingjodi(request, graph, redirect=None):
         jodi = UserJodi.objects.create(**kwargs)
         # Call to post on wall
         post_on_wall(graph,jodi.jodi_custom, jodi.id)
-        # finding rank of jodi
+            # finding rank of jodi
+            
     jodiRank = getJodiRank(jodi.id)
     data = {'selected_jodi':jodi, 'jodiRank':jodiRank, 
-            'name':fb_profile.facebook_firstname, 'redirect':redirect}
+            'name':fb_profile[0].facebook_firstname, 'redirect':redirect}
     return render_to_response(templateName, data, context_instance=RequestContext(request))
-
 
 
 def voteView(request, jodiid):
@@ -145,10 +154,12 @@ def voteView(request, jodiid):
         templateName = '/fb/vote.html'
     else:
         templateName = 'vote.html'
-    userJodi = UserJodi.objects.get(id=int(jodiid))
-    data = {'jodi_creator':userJodi.profile.facebook_firstname , 
-            'jodi':userJodi.jodi_custom,
-            'jodiid':userJodi.id}
+    userJodi = UserJodi.objects.filter(id=int(jodiid))
+    if not userJodi:
+        return HttpResponse('Wrong data')
+    data = {'jodi_creator':userJodi[0].profile.facebook_firstname , 
+            'jodi':userJodi[0].jodi_custom,
+            'jodiid':userJodi[0].id}
     return render_to_response(templateName, data, context_instance=RequestContext(request))
     
 @facebook_required
