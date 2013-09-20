@@ -1,8 +1,11 @@
 from django.db import models
-
+from django_facebook.models import FacebookProfileModel
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
  
-class FacebookUserProfile(models.Model):
-    facebook_id = models.BigIntegerField(blank=True, unique=True, null=True)
+class FacebookUserProfile(FacebookProfileModel):
+    user = models.OneToOneField('auth.User', null=True)
+#     facebook_id = models.BigIntegerField(blank=True, unique=True, null=True)
     facebook_username= models.CharField(max_length=255, blank=True, null=True)
     facebook_firstname = models.CharField(max_length=255, blank=True, null=True)
     email=models.EmailField()
@@ -11,6 +14,13 @@ class FacebookUserProfile(models.Model):
     
     def __unicode__(self):
         return self.facebook_firstname
+    
+#Make sure we create a MyCustomProfile when creating a User
+def create_facebook_profile(sender, instance, created, **kwargs):
+    if created:
+        FacebookUserProfile.objects.create(user=instance)
+
+post_save.connect(create_facebook_profile, sender=User)
     
 class Jodi(models.Model):
     jodi=models.CharField(max_length=50,unique=True)
