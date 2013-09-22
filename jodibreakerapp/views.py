@@ -10,6 +10,7 @@ from forms import UserJodiForm
 from httplib import HTTPResponse
 from models import FacebookUserProfile, Jodi, UserJodi, Vote
 from random import randint
+from django.core.exceptions import MultipleObjectsReturned
 
 import logging
 import json
@@ -48,7 +49,6 @@ def home(request, graph):
                 request.session['fb_id']=fbprofile[0].facebook_id
                 return trendingjodi(request, graph, redirect=1)
         form = UserJodiForm()
-
         return render_to_response(templateName, {'facebookName':me['first_name'], 'form':form, 'facebookid':me['id']}, context_instance=RequestContext(request))
     else:
         return HTTPResponse('Bad Request')
@@ -56,13 +56,6 @@ def home(request, graph):
 def index(request):
     if request.session.get("voteid") and request.method == 'GET':
         url = request.session.get("voteid")
-#         url = 'www.pointeeworld.com' + url
-#         url = request.session.get("voteid")[2:]
-#         url = urllib2.unquote(url)
-#         url_lst = url.split("&")
-#         if len(url_lst) >1:
-#             url = url_lst[0]
-
         del request.session["voteid"]
         return redirect(url)
     message = 'Hello';
@@ -90,7 +83,6 @@ def post_on_wall(*args):
 
 @facebook_required
 def view_wallpost(request, graph):
-
     msg = '0'
     if request.method == 'POST':
         jodi_id = request.POST.get('sharenow')
@@ -117,10 +109,11 @@ def trendingjodi(request, graph, redirect=None):
             try:
                 jodi=UserJodi.objects.get(profile=fb_profile[0])
             except MultipleObjectsReturned:
-               return HttpResponse('I dont know what to do!') 
+               return HttpResponse('You have already created jodi') 
         else:
             return HttpResponse('Wrong data')
     else:
+        createflag = 1
         jodi = request.POST.get('jodi')
         jodi_custom = request.POST.get('jodi_custom')
         fb_profile = FacebookUserProfile.objects.filter(facebook_id=request.POST.get('fb_id'))
@@ -130,6 +123,9 @@ def trendingjodi(request, graph, redirect=None):
                 fb_profile[0].mobile_no = mobile
                 fb_profile[0].save()
             kwargs = {'profile':fb_profile[0]}
+            jodi=UserJodi.objects.filter(profile=fb_profile[0])
+            if jodi:
+                createflag = 0
         else:
             return HttpResponse('Wrong data')
         if jodi_custom:
@@ -137,6 +133,8 @@ def trendingjodi(request, graph, redirect=None):
         else:
             jodi = Jodi.objects.get(id=int(jodi))
             kwargs['jodi_custom'] = jodi.jodi
+        if createflag == 0:
+            return HttpResponse('You have already created jodi')
         jodi = UserJodi.objects.create(**kwargs)
         # Call to post on wall
         post_on_wall(graph,jodi.jodi_custom, jodi.id)
@@ -164,14 +162,10 @@ def voteView(request, jodiid):
     
 @facebook_required
 def castVote(request, graph):
-
         message = ''
-
     #if request.method == 'POST':
         me = graph.get('me')
-
         profile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
-
         kwargs = {'facebook_id':me['id']}
         if me.get('username'):
             kwargs['facebook_username'] = me['username']
@@ -184,6 +178,9 @@ def castVote(request, graph):
             if loc.get('name'):
                 kwargs['city'] = me['location']['name']
         kwargs['mobile_no'] = ''
+        if me.get('picture'):
+            picture = me.get('picture')
+            kwargs['pic_url'] = picture['data']['url']
         if not profile:
             profile=FacebookUserProfile.objects.create(**kwargs)
         else:
@@ -221,3 +218,8 @@ def view_trending():
             jodi_dict[jodi[0]] = jodi[1]
     trending_jodi_list = sorted(jodi_dict, key=jodi_dict.get, reverse=True)        
     return trending_jodi_list
+
+def leader_board(request):
+    jodis = UserJodi.objects.all().order_by('-counter')
+#     users = FacebookUserProfile.objects.all()
+    return render_to_response('leaderboard.html', {'jodis':jodis}, context_instance=RequestContext(request))

@@ -12,7 +12,7 @@ urlpatterns = patterns('',
                         url(r'^vote/(?P<jodiid>\d+)/$','jodibreakerapp.views.voteView',name='voteView'),
                         url(r'^castvote/$','jodibreakerapp.views.castVote',name='castVote'),
                         url(r'^wallpost/$','jodibreakerapp.views.view_wallpost',name='post_on_wall'),
-
+                        url(r'^leader-board/$','jodibreakerapp.views.leader_board',name='leader_board'),
                         url(r'^facebook/', include('django_facebook.urls')),
                         url(r'^accounts/', include('django_facebook.auth_urls')),
                         url(r'^terms/', direct_to_template,{'template':'term_and_condition.html'},name='terms'),

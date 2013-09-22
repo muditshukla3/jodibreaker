@@ -11,9 +11,10 @@ class FacebookUserProfile(FacebookProfileModel):
     email=models.EmailField()
     city=models.CharField(max_length=100,null=True,blank=True)
     mobile_no=models.CharField(max_length=255, blank=True, null=True)
+    pic_url = models.CharField(max_length=1000, blank=True, null=True)
     
-    def __unicode__(self):
-        return self.facebook_firstname
+#     def __unicode__(self):
+#         return self.facebook_firstname
     
 #Make sure we create a MyCustomProfile when creating a User
 def create_facebook_profile(sender, instance, created, **kwargs):
