@@ -75,7 +75,7 @@ def get_random_desc():
 def post_on_wall(*args):
     graph = args[0]
     message = 'I have chosen ' + args[1] + ' as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
-    picture_path = 'http://www.pointeeworld.com/media/images/goa_jao.png/'
+    picture_path = 'https://www.pointeeworld.com/media/images/goa_jao.png/'
     domain = Site.objects.get_current()
     linkUrl = domain.name + reverse('voteView', kwargs={'jodiid':args[2]})+'/'
     description = get_random_desc()
