@@ -257,7 +257,7 @@ h3 {
 
 .right_contant_tnc_2 {width:368px; height:1231px; float:left;  }
 .fotter_tnc {width:765px; margin:0px auto; background:url(../images/bg_card_blue.png) no-repeat; height:109px; position:relative; }
-.fotter_text {  float: left; height: 100px; margin: 0 0 0 204px; width: 420px;}
+/*.fotter_text {  float: left; height: 100px; margin: 0 0 0 204px; width: 420px;}*/
 .fotter_text_2 { width:422px; height:100px; float:left; margin:-8px 0px 0px 22px;}
 .american_express {font-size:18px; color:#134567; margin-top:20px; font-family:Arial, Helvetica, sans-serif;}
 .card_tnc {width:170px; height:170px; margin:-85px 0 0 18px; float:left; position:relative; z-index:999;  }
