@@ -1,10 +1,6 @@
 {% extends "layoutbase.html" %}
 {% block bodycontent %}
-<div class="wrapper">
-	<div class="header">
-    	<div class="logo"><a href="https://www.americanexpress.com/india/" target="_blank"><img src="{{MEDIA_URL}}images/logo.jpg" border="0"></a></div>
-       
-    </div>
+
     
     <div class="contant_outer_2">
       <div class="from_left_contant">
@@ -16,20 +12,7 @@
                           <li class="odd"><a href="#"> {{forloop.counter}}.  {{jodi}}</a></li>
                       {% endfor %}    
                     </ol>
-                	<!--
-                	<ol>
-                    	<li class="odd"><a href="#">1.  Santa & Banta</a></li>
-                        <li><a href="#">2. Chai & Samosa</a></li>
-                        <li class="odd"><a href="#">3. Nachos & Salsa</a></li>
-                        <li><a href="#">4. Rabri & Jalebi</a></li>
-                        <li class="odd"><a href="#">5. Rumali Roti & Kababs</a></li>
-                        <li><a href="#">6. Chacha Choudhary & Saboo</a></li>
-                        <li class="odd"><a href="#">7. French Fries & Burgers</a></li>
-                        <li><a href="#">8. Bread & Jam</a></li>
-                        <li class="odd"><a href="#">9. Chocolate & Strawberry</a></li>
-                        <li><a href="#">10. Sun & Sand</a></li>
-               
-                </ol>-->
+
                 
                 </div>
                <div class="card_2"><a href="https://www.americanexpress.com/in/content/payback-card/" target="_blank"><img src="{{MEDIA_URL}}images/pay_back_card.png" border="0"></a></div>
@@ -56,66 +39,7 @@
                         <div class="red">{{jodi.counter}} Points</div>
                  </li>
           		  {% endfor %}
-          		  <!--<li>
-                      <div class="leadboad_img"><img src="images/leadboard_img.jpg"></div>
-                      <div class="ashok">Ashok</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                 <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img2.jpg"></div>
-                      <div class="ashok">Vinod</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                  <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img3.jpg"></div>
-                      <div class="ashok">Priya</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                 <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img4.jpg"></div>
-                      <div class="ashok">Suraj</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                  <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img5.jpg"></div>
-                      <div class="ashok">Ajay</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                 <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img6.jpg"></div>
-                      <div class="ashok">Sonam</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                  <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img7.jpg"></div>
-                      <div class="ashok">Ashok</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                 <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img2.jpg"></div>
-                      <div class="ashok">Ritu</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                  <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img3.jpg"></div>
-                      <div class="ashok">Jogi</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                 <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img4.jpg"></div>
-                      <div class="ashok">Sanchu</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                  <li>
-                      <div class="leadboad_img"><img src="images/rajesh.jpg"></div>
-                      <div class="ashok">Ashok</div>
-                        <div class="red">1234 Points</div>
-                 </li>
-                 <li>
-                      <div class="leadboad_img"><img src="images/leadboard_img.jpg"></div>
-                      <div class="ashok">Ashok</div>
-                        <div class="red">1234 Points</div>
-                 </li>-->
+
             </ul>
 </div>
 
@@ -141,36 +65,32 @@
     </div>
     
     	
-</div>
 
-<script src="{{MEDIA_URL}}/js/jquery.mCustomScrollbar.js"></script>
-<script>
-$(window).load(function() {
-	mCustomScrollbars();
-});
 
-function mCustomScrollbars(){
-	/* 
-	malihu custom scrollbar function parameters: 
-	1) scroll type (values: "vertical" or "horizontal")
-	2) scroll easing amount (0 for no easing) 
-	3) scroll easing type 
-	4) extra bottom scrolling space for vertical scroll type only (minimum value: 1)
-	5) scrollbar height/width adjustment (values: "auto" or "fixed")
-	6) mouse-wheel support (values: "yes" or "no")
-	7) scrolling via buttons support (values: "yes" or "no")
-	8) buttons scrolling speed (values: 1-20, 1 being the slowest)
-	*/
-	$("#mcs4_container").mCustomScrollbar("vertical",0,"easeOutCirc",1,"fixed","yes","no",0); 
-}
 
-/* function to fix the -10000 pixel limit of jquery.animate */
-$.fx.prototype.cur = function(){
-    if ( this.elem[this.prop] != null && (!this.elem.style || this.elem.style[this.prop] == null) ) {
-      return this.elem[ this.prop ];
-    }
-    var r = parseFloat( jQuery.css( this.elem, this.prop ) );
-    return typeof r == 'undefined' ? 0 : r;
-}
-</script>
 {% endblock bodycontent %}
+
+
+{% block ASYJS %}
+{{ block.super }}
+    <script src="{{MEDIA_URL}}/js/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript">
+        $(window).load(function() {
+            mCustomScrollbars();
+        });
+
+        function mCustomScrollbars(){
+
+            $("#mcs4_container").mCustomScrollbar("vertical",0,"easeOutCirc",1,"fixed","yes","no",0);
+        }
+
+        /* function to fix the -10000 pixel limit of jquery.animate */
+        $.fx.prototype.cur = function(){
+            if ( this.elem[this.prop] != null && (!this.elem.style || this.elem.style[this.prop] == null) ) {
+                return this.elem[ this.prop ];
+            }
+            var r = parseFloat( jQuery.css( this.elem, this.prop ) );
+            return typeof r == 'undefined' ? 0 : r;
+        }
+    </script>
+{% endblock ASYJS %}
