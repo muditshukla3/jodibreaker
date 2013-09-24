@@ -4,7 +4,7 @@ from models import Jodi
 
 class UserJodiForm(forms.Form):
     jodi=forms.ChoiceField(choices=[],widget=forms.Select(attrs={'class' : 'styled sel_jodi'}))
-    jodi_custom=forms.CharField(widget=forms.TextInput(attrs={'class':'cus_jodi','maxlength':'50'}))
+    jodi_custom=forms.CharField(widget=forms.TextInput(attrs={'class':'cus_jodi','maxlength':'50','placeholder':'Enter your Jodi','holder':'Enter your Jodi'}))
     
     def __init__(self):
         super(UserJodiForm,self).__init__()
