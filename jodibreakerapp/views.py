@@ -67,7 +67,8 @@ def home(request, graph):
         return HTTPResponse('Bad Request')
 
 def index(request):
-    if request.session.get("voteid") and request.method == 'GET':
+
+    if request.session.get("voteid") :
         url = request.session.get("voteid")
         del request.session["voteid"]
         return redirect(url)
@@ -110,6 +111,7 @@ def view_wallpost(request, graph):
 
 @facebook_required
 def trendingjodi(request, graph, redirect=None):
+
     if '/fb/' in request.get_full_path():
         templateName = '/fb/treading_jodi.html'
     else:
@@ -126,6 +128,7 @@ def trendingjodi(request, graph, redirect=None):
         else:
             return HttpResponse('Wrong data')
     else:
+
         createflag = 1
         jodi = request.POST.get('jodi')
         jodi_custom = request.POST.get('jodi_custom')

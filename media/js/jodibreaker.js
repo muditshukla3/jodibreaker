@@ -5,11 +5,14 @@ $('.cls_box').dialog({width:550,autoOpen:false,height:300,modal:true});
 });
 
 
-$('.cls_continue_mob').on('click',function(){
-
+$('.cls_continue_mob').on('click',function(e){
+    e.preventDefault();
     if(!$(this).hasClass('cls_skip'))
-    { $('input[name=mobile_no]').val($('#cls_mob').val());}
-    else { $('input[name=mobile_no]').val('');}
+    {
+        $('input[name=mobile_no]').val($('#cls_mob').val());
+    }else {
+        $('input[name=mobile_no]').val('');
+    }
     $('#user_jodi').submit();
 });
 
