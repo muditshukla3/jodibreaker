@@ -20,6 +20,7 @@ import urllib2
 logger = logging.getLogger('view')
 @facebook_required()
 def home(request, graph):
+
     firstName = ''
     templateName = ''
     if '/fb/' in request.get_full_path():
@@ -116,7 +117,7 @@ def trendingjodi(request, graph, redirect=None):
         createflag = 1
         jodi = request.POST.get('jodi')
         jodi_custom = request.POST.get('jodi_custom')
-        fb_profile = FacebookUserProfile.objects.filter(facebook_id=request.POST.get('fb_id'))
+        fb_profile = FacebookUserProfile.objects.filter(facebook_id=int(request.POST.get('fb_id')))
         mobile = request.POST.get('mobile_no')
         if fb_profile:
             if mobile:
