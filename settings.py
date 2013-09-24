@@ -74,15 +74,15 @@ STATIC_URL = '/static/'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
+ADMIN_MEDIA_PREFIX = '/admin/media/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-)
 
+)
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -147,7 +147,8 @@ AUTHENTICATION_BACKENDS = (
     'django_facebook.auth_backends.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
+AUTH_PROFILE_MODULE = 'jodibreakerapp.FacebookUserProfile'
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
@@ -172,6 +173,7 @@ LOGGING = {
 }
 FACEBOOK_APP_ID = '564979820231984'
 FACEBOOK_APP_SECRET = 'ec61bd5a609d6830ee958c051f05c76a'
-#FACEBOOK_CANVAS_PAGE = 'https://apps.facebook.com/%s/' % FACEBOOK_APP_ID
-FACEBOOK_CANVAS_PAGE = 'http://www.pointeeworld.com/'
+FACEBOOK_CANVAS_PAGE = 'https://apps.facebook.com/%s/' % FACEBOOK_APP_ID
+FACEBOOK_CANVAS_PAGE = 'https://apps.facebook.com/pay_back'
 FACEBOOK_DEFAULT_SCOPE = ['email','publish_stream','user_location','publish_actions']
+FACEBOOK_STORE_LOCAL_IMAGE = False
