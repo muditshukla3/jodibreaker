@@ -49,6 +49,18 @@ def home(request, graph):
             if jodi:
                 request.session['fb_id']=fbprofile[0].facebook_id
                 return trendingjodi(request, graph, redirect=1)
+            else:
+                if me.get('username'):
+                    fbprofile[0].facebook_username = me['username']
+                if me.get('first_name'):
+                    fbprofile[0].facebook_firstname = me['first_name']
+                if me.get('email'):
+                    fbprofile[0].email = me['email']
+                if me.get('location'):
+                    loc = me.get('location')
+                    if loc.get('name'):
+                        fbprofile[0].city = me['location']['name']
+                fbprofile[0].save()
         form = UserJodiForm()
         return render_to_response(templateName, {'facebookName':me['first_name'], 'form':form, 'facebookid':me['id']}, context_instance=RequestContext(request))
     else:
