@@ -20,6 +20,7 @@ import urllib2
 logger = logging.getLogger('view')
 @facebook_required()
 def home(request, graph):
+
     firstName = ''
     templateName = ''
     if '/fb/' in request.get_full_path():
@@ -48,6 +49,18 @@ def home(request, graph):
             if jodi:
                 request.session['fb_id']=fbprofile[0].facebook_id
                 return trendingjodi(request, graph, redirect=1)
+            else:
+                if me.get('username'):
+                    fbprofile[0].facebook_username = me['username']
+                if me.get('first_name'):
+                    fbprofile[0].facebook_firstname = me['first_name']
+                if me.get('email'):
+                    fbprofile[0].email = me['email']
+                if me.get('location'):
+                    loc = me.get('location')
+                    if loc.get('name'):
+                        fbprofile[0].city = me['location']['name']
+                fbprofile[0].save()
         form = UserJodiForm()
         return render_to_response(templateName, {'facebookName':me['first_name'], 'form':form, 'facebookid':me['id']}, context_instance=RequestContext(request))
     else:
@@ -116,7 +129,7 @@ def trendingjodi(request, graph, redirect=None):
         createflag = 1
         jodi = request.POST.get('jodi')
         jodi_custom = request.POST.get('jodi_custom')
-        fb_profile = FacebookUserProfile.objects.filter(facebook_id=request.POST.get('fb_id'))
+        fb_profile = FacebookUserProfile.objects.filter(facebook_id=int(request.POST.get('fb_id')))
         mobile = request.POST.get('mobile_no')
         if fb_profile:
             if mobile:
