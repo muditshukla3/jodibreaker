@@ -69,7 +69,7 @@ def home(request, graph):
 def index(request):
 
     if request.session.get("voteid") :
-        url = request.session.get("voteid")
+        url = "https://www.pointeeworld.com" + request.session.get("voteid")
         del request.session["voteid"]
         return redirect(url)
     message = 'Hello';
