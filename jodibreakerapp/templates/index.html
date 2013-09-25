@@ -2,9 +2,16 @@
 
 {% block css.custom %}
 <style type="text/css">
-.terma_and_condition{width:315px;}
+.terma_and_condition{width:210px;float: left;margin: 25px 0 0 15px;}
 .terma_and_condition a{float:left;}
 .apply_now{display: none;}
+.right_contant_text{padding-top:0px;width:400px}
+.right_contant{width:430px}
+.center_contant{width:500px}
+.contant_outer{background: #ffc20f;min-height: 580px;}
+.goa_jao{margin-left: 110px;}
+.poitee{padding-left: 548px;}
+.poitee_hand{padding-left: 520px;}
 </style>
 
 {% endblock css.custom %}
@@ -12,15 +19,16 @@
 
 
     <div class="contant_outer">
+    {% comment %}
  	    <div class="left_contant">
-            <div class="watch_video"> <a href="{% url video %}" class="fancybox iframe.fancybox"  style="color:#0072bc; text-decoration:none;"><img src="{{MEDIA_URL}}/images/watch_video.png" border="0"></a></div>
+
            <div class="facebook"><a href="https://www.facebook.com/AmericanExpressIndia" target="_blank"><div class="facebook_hover"></div></a></div>
             <div class="clear"></div>
             <div class="card"><a href="https://www.americanexpress.com/in/content/payback-card/" target="_blank"><img src="{{MEDIA_URL}}/images/pay_back_card.png" border="0"></a></div> 
         </div>
-       
+{% endcomment %}
         <div class="center_contant">
-         	<div class="goa_jao"><img src="{{MEDIA_URL}}/images/goa_jao.png"></div>
+         	<div class="goa_jao"><img src="{{MEDIA_URL}}/images/goa_jao.png"></div><br/>
                 <div class="banner">
                  <div class="rotator">
                       <ul>
@@ -31,12 +39,18 @@
                       </ul>
                     </div>
                 </div>
+            <div class="card"><a href="https://www.americanexpress.com/in/content/payback-card/" target="_blank"><img src="{{MEDIA_URL}}/images/pay_back_card.png" border="0"></a></div>
        </div>
       
     <div class="right_contant">
     	<div class="right_top"></div>
         <div class="clear"></div>
-          <div class="right_contant_text">Rain is no fun without the steaming hot pakoras. Anarkali is incomplete without Salim. It’s the perfect 						             chemistry between the two that makes them amongst the most rocking jodis. Just like the rewarding duo of American Express and PAYBACK.            <br><br>
+          <div class="right_contant_text">
+              <div class="hmright">
+              <div class="watch_video"> <a href="{% url video %}" class="fancybox iframe.fancybox"  style="color:#0072bc; text-decoration:none;"><img src="{{MEDIA_URL}}/images/watch_video.png" border="0"></a>
+              </div>
+              </div>
+              Rain is no fun without the steaming hot pakoras. Anarkali is incomplete without Salim. It’s the perfect 						             chemistry between the two that makes them amongst the most rocking jodis. Just like the rewarding duo of American Express and PAYBACK.            <br><br>
               Think you know a better one? Participate in the
             <div class="rewarding"><img src="{{MEDIA_URL}}/images/rewarding.jpg"></div>
               and boost your chances of winning a trip for two to Goa, worth Rs.30,000, sponsored by Cleartrip.com.
@@ -47,7 +61,9 @@
 
         </div>
         <div class="terma_and_condition">
+{% comment %}
             <a href="{% url leader_board %}" target="_blank" >Leader Board</a> <span>|</span>
+{% endcomment %}
             <a class="marright" href="{% url about %}" target="_blank">About the Contest</a><span>|</span>
             <a class="marright" href="{% url terms %}" target="_blank">Terms and Conditions</a>
 
