@@ -169,7 +169,7 @@ option {background:#ffda6f; }
 
 .contant_outer_tnc {
     background: none repeat scroll 0 0 #FFC20F;
-    min-height: 1100px;float: left;
+    min-height: 1700px;float: left;
 }
 .right_contant_tnc_2 {
     float: left;
@@ -196,8 +196,8 @@ h3 {
 
 .about h3,.garima_header_tnc h3{width:100%;float:left}
 .left_contain_tnc {width:950px; height:1000px; float:left; margin-left:20px; margin-top:0px;}
-.tnc_logo {padding:20px; margin-top:20px; width:150px; height:50px;}
-.about {font-size:12px; color:#215578; ; font-family:Arial, Helvetica, sans-serif; padding:10px; margin:10px; line-height:18px; height:966px;}
+.tnc_logo {padding:20px; margin-top:20px; width:280px; height:135px;}
+.about {font-size:12px; color:#215578; ; font-family:Arial, Helvetica, sans-serif; padding:0px 10px 10px; margin:0px 10px 10px; line-height:18px; height:966px;}
 .term_and_condition_contain {width:950px; height:auto; float:left;}
 .term_and_condition_contain ul{ width:900px; list-style-type:disc; float: left;padding: 0px;}
 .term_and_condition_contain li{font-size:12px; color:#215578; font-weight:lighter; font-family:Arial; padding:5px 10px 5px 0px; margin:5px 10px 5px 0px; line-height:18px; list-style-type:disc;}

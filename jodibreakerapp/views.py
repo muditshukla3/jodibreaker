@@ -80,16 +80,16 @@ def index(request):
     return render(request, templateName, {'message':message})
 
 def get_random_desc():
-    desc_dict = {1:"Please vote for my 'Jodi' and make me win a free trip to Goa!",
-                 2:"Vote for my favorite 'Jodi' to help me win a free trip to Goa.",
-                 3:"Help me win this contest by voting for my favorite 'Jodi'. Winners get a free trip to Goa."}
+    desc_dict = {1:"Please vote for my 'Jodi' and make me win the contest!",
+                 2:"Vote for my favorite 'Jodi' to help me win the contest.",
+                 3:"Help me win this contest by voting for my favorite 'Jodi'."}
     return desc_dict[randint(1,3)]
     
 
 def post_on_wall(*args):
     graph = args[0]
     message = 'I have chosen ' + args[1] + ' as my favorite \'Jodi\' in the Rewading Jodi Batao contest.'
-    picture_path = 'https://www.pointeeworld.com/media/images/goa_jao.png/'
+    picture_path = 'https://www.pointeeworld.com/media/images/rewarding_small.png/'
     domain = Site.objects.get_current()
     linkUrl = domain.name + reverse('voteView', kwargs={'jodiid':args[2]})+'/'
     description = get_random_desc()
