@@ -179,6 +179,7 @@ def voteView(request, jodiid):
 @facebook_required
 def castVote(request, graph):
         message = ''
+        flag = 0
     #if request.method == 'POST':
         me = graph.get('me')
         profile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
@@ -194,16 +195,26 @@ def castVote(request, graph):
             if loc.get('name'):
                 kwargs['city'] = me['location']['name']
         kwargs['mobile_no'] = ''
-        if me.get('picture'):
-            picture = me.get('picture')
-            kwargs['pic_url'] = picture['data']['url']
+        
         if not profile:
             profile=FacebookUserProfile.objects.create(**kwargs)
         else:
+            flag = 1
             profile=profile[0]    
         jodi= UserJodi.objects.get(id=int(request.GET.get('jodiid')))
-
         vote = Vote.objects.filter(jodi=jodi, profile=profile)
+        if flag == 1 and not vote:
+            if me.get('username'):
+                profile.facebook_username = me['username']
+            if me.get('first_name'):
+                profile.facebook_firstname = me['first_name']
+            if me.get('email'):
+                profile.email = me['email']
+            if me.get('location'):
+                loc = me.get('location')
+                if loc.get('name'):
+                    profile.city = me['location']['name']
+            profile.save()
         if profile == jodi.profile:
             message = 'You can not voted on your jodi'
         elif vote:  # if already voted
