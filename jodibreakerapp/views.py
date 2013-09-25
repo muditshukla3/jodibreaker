@@ -98,15 +98,15 @@ def post_on_wall(*args):
 @facebook_required
 def view_wallpost(request, graph):
     msg = '0'
-    if request.method == 'POST':
-        jodi_id = request.POST.get('sharenow')
-        jodi = UserJodi.objects.filter(id=int(jodi_id))
-        if jodi:
-            me = graph.get('me')
-            fbprofile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
-            if fbprofile[0] and jodi[0].profile.id == fbprofile[0].id:
-                post_on_wall(graph, jodi[0].jodi_custom, jodi[0].id)
-                msg = '1'
+    #if request.method == 'POST':
+    jodi_id = request.REQUEST.get('sharenow')
+    jodi = UserJodi.objects.filter(id=int(jodi_id))
+    if jodi:
+        me = graph.get('me')
+        fbprofile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
+        if fbprofile[0] and jodi[0].profile.id == fbprofile[0].id:
+            post_on_wall(graph, jodi[0].jodi_custom, jodi[0].id)
+            msg = '1'
     return HttpResponse(json.dumps({'message':msg}),mimetype="application/json")
 
 @facebook_required
