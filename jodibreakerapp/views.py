@@ -80,9 +80,9 @@ def index(request):
     return render(request, templateName, {'message':message})
 
 def get_random_desc():
-    desc_dict = {1:"Please vote for my 'Jodi' and make me win the contest!",
-                 2:"Vote for my favorite 'Jodi' to help me win the contest.",
-                 3:"Help me win this contest by voting for my favorite 'Jodi'."}
+    desc_dict = {1:"Vote for my favorite 'Jodi' to help me win the contest.",
+                 2:"Help me win this contest by voting for my favorite 'Jodi'.",
+                 3:"Please vote for my 'Jodi' and make me win the contest!"}
     return desc_dict[randint(1,3)]
     
 
