@@ -161,19 +161,28 @@ def trendingjodi(request, graph, redirect=None):
             'name':fb_profile[0].facebook_firstname, 'redirect':redirect}
     return render_to_response(templateName, data, context_instance=RequestContext(request))
 
-
-def voteView(request, jodiid):
+@facebook_required
+def voteView(request, jodiid, graph):
 
     if '/fb/' in request.get_full_path():
         templateName = '/fb/vote.html'
     else:
         templateName = 'vote.html'
+    message = None
+    me = graph.get('me')
+    profile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
     userJodi = UserJodi.objects.filter(id=int(jodiid))
-    if not userJodi:
+    if profile and userjodi:
+        vote = Vote.objects.filter(jodi=userjodi[0], profile=profile[0])
+        if vote:
+            message = 'You have already voted for this jodi'
+    elif not userJodi:
         return HttpResponse('Wrong data')
     data = {'jodi_creator':userJodi[0].profile.facebook_firstname , 
             'jodi':userJodi[0].jodi_custom,
-            'jodiid':userJodi[0].id}
+            'jodiid':userJodi[0].id,
+            'name':me['facebook_firstname'],
+            'message':message}
     return render_to_response(templateName, data, context_instance=RequestContext(request))
     
 @facebook_required
