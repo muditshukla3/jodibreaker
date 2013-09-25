@@ -161,7 +161,7 @@ def trendingjodi(request, graph, redirect=None):
             'name':fb_profile[0].facebook_firstname, 'redirect':redirect}
     return render_to_response(templateName, data, context_instance=RequestContext(request))
 
-def voteView(request, jodiid, graph):
+def voteView(request, jodiid):
 
     if '/fb/' in request.get_full_path():
         templateName = '/fb/vote.html'
