@@ -31,7 +31,7 @@ img.bg {height: auto;left: 0;min-height: 100%;min-width: 1400px;position: absolu
 .left_contant {width:270px; height:400px; float:left;}
 .left_contant_2 {width:120px; height:400px; float:left;}
 
-.watch_video {width:242px; height:209px; margin:-35px 0 0 30px; }
+.watch_video {width:242px; height:209px; margin:-50px 0 0 30px; }
 .facebook {width:100px; height:30px; margin-top:50px;}
 .facebook_hover {width:100px; height:47px; background:url(/media/images/facebook.png) no-repeat top; }
 .facebook_hover:hover {width:100px; height:48px; background-position:bottom }
@@ -49,10 +49,10 @@ div.rotator ul li.show {z-index:500}
 
 .center_contant {width:317px; height:400px; float:left;}
 .center_contant_2 {width:317px; height:400px; float:left; margin-left:-20px;}
-.goa_jao {width:267px; height:120px; margin:30px 0px 0px 19px;}
-.goa_jao_2 {width:267px; height:120px; margin:55px 0px 0px 18px;}
+.goa_jao {width:267px; height:135px; margin:30px 0px 0px 19px;}
+.goa_jao_2 {width:267px; height:135px; margin:55px 0px 0px 18px;}
 
-.banner {width:267px; height:200px; margin-top:0px;}
+.banner {width:267px; height:200px; margin-top:0px;margin-left: 60px;}
 .from_banner {width:267px; height:200px; margin:0px 0 0 13px;}
 
 .right_contant {width:344px; height:400px; float:left;}
@@ -60,7 +60,7 @@ div.rotator ul li.show {z-index:500}
 .right_top { width:200px; height:30px;float:right;}
 .rewarding {width:350px; height:30px;}
 
-.clear_logo {width:350px; height:40px; float:left; margin-top:0px; margin-left:25px;}
+.clear_logo {width:165px; height:40px; float:left; margin-top:0px; margin-left:25px;}
 
 .participate_hover{width:240px; height:65px; margin:0px 15px 3px 14px; background:url(/media/images/pariticipate.png) no-repeat top; }
 .participate_hover:hover { background-position:bottom;}
@@ -274,3 +274,4 @@ h3 {font-size:24px; color:#215578;font-weight:lighter; font-family:Arial, Helvet
 .red {width:100%; height:20px; font-family:Arial; font-size:12px; color:#a0410d; text-align:center;}
 .from_left_contant {width:315px; height:500px; float:left; margin-left:0px; }
 h2 {font-size:24px; color:#215578; width:auto; float:left; font-weight:lighter; font-family:Arial, Helvetica, sans-serif; }
+.hmright{width:100%;float:left;margin-bottom: 10px;}

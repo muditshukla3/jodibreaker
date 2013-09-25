@@ -47,7 +47,9 @@
     {% else %}
     <div class="make">Thank you for submitting your favorite Jodi</div>
     {% endif %}
+    {% if selected_jodi.jodi %}
     <div class="harmonium">{{selected_jodi.jodi}}</div>
+    {% endif %}
    	<div class="your_jodi">
            Your Jodi is at rank {{jodiRank}} in the Rewarding Jodi Batao Contest.
            </div>

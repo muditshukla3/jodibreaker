@@ -3,7 +3,7 @@ if($('#id_jodi').val()!=0 || $.trim($('#id_jodi_custom').val())!=''){
     if($('#id_jodi').val()!=0 && $.trim($('#id_jodi_custom').val())!=''){
         alert('Kindly create one Jodi to proceed');
     }else{
-        $('.cls_box').dialog({width:550,autoOpen:false,height:310,modal:true});
+        $('.cls_box').dialog({width:550,autoOpen:false,height:320,modal:true});
         $('.cls_box').dialog('open');
     }
 
