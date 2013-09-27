@@ -29,6 +29,8 @@ def home(request, graph):
         templateName = 'from.html'
     if request.method == 'GET':
         me = graph.get('me')
+        if not me:
+            return HttpResponseRedirect(reverse('jodibreakerapp.views.index'))
         fbprofile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
         kwargs = {'facebook_id':me['id']}
         if me.get('username'):
@@ -67,7 +69,6 @@ def home(request, graph):
         return HTTPResponse('Bad Request')
 
 def index(request):
-
     if request.session.get("voteid") :
         url = "http://www.pointeeworld.com" + request.session.get("voteid")
         del request.session["voteid"]
