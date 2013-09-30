@@ -28,9 +28,9 @@ def home(request, graph):
     else:
         templateName = 'from.html'
     if request.method == 'GET':
+        if not graph:
+            return redirect('jodibreakerapp.views.index')
         me = graph.get('me')
-        if not me:
-            return HttpResponseRedirect(reverse('jodibreakerapp.views.index'))
         fbprofile = FacebookUserProfile.objects.filter(facebook_id=me['id'])
         kwargs = {'facebook_id':me['id']}
         if me.get('username'):
