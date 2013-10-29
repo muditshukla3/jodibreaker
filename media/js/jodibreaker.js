@@ -28,14 +28,16 @@ $('.cls_continue_mob').on('click',function(e){
 
 $('.shareagain').on('click',function(){
     var j = $(this);
-    j.SRC = 'http://www.pointeeworld.com/wallpost/';
+    j.SRC = 'https://www.pointeeworld.com/wallpost/';
     j.DATA = {'sharenow':j.data('jodiid')};
     $f.makeRequest(j,function(r){
         if(r.message == 1){
+            $('.cls_msg').html('<div class="right_just">You have successfully shared your jodi.</div>');
 
-            $('.cls_msg').dialog({width:500,autoOpen:false,height:200,modal:true});
-            $('.cls_msg').dialog('open');
-            $('.right_just').css({height:'100px'});
         }
     });
+    $('.cls_msg').dialog({width:500,autoOpen:false,height:200,modal:true});
+    $('.cls_msg').dialog('open');
+    $('.cls_msg').html('<div class="right_just">Processing...</div>');
+    $('.right_just').css({height:'100px'});
 })
