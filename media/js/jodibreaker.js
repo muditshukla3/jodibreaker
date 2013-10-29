@@ -33,7 +33,7 @@ $('.shareagain').on('click',function(){
     $f.makeRequest(j,function(r){
         if(r.message == 1){
             $('.cls_msg').html('<div class="right_just">You have successfully shared your jodi.</div>');
-
+            $('.right_just').css({height:'100px'});
         }
     });
     $('.cls_msg').dialog({width:500,autoOpen:false,height:200,modal:true});
