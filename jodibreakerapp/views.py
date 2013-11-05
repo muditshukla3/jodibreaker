@@ -89,7 +89,7 @@ def get_random_desc():
 
 def post_on_wall(*args):
     graph = args[0]
-    message = 'I have chosen ' + args[1] + ' as my rewarding \'Jodi\' in the American Express Rewading Jodi Batao, Holiday Manao contest. Help me win this contest by voting for my entry'
+    message = 'I have chosen ' + args[1] + ' as my rewarding \'Jodi\' in the American Express &reg; Rewading Jodi Batao, Holiday Manao contest. Help me win this contest by voting for my entry'
     picture_path = 'https://www.pointeeworld.com/media/images/fb.jpg/'
     domain = Site.objects.get_current()
     linkUrl = domain.name + reverse('voteView', kwargs={'jodiid':args[2]})+'/'
