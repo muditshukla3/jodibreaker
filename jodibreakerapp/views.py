@@ -94,7 +94,7 @@ def post_on_wall(*args):
     domain = Site.objects.get_current()
     linkUrl = domain.name + reverse('voteView', kwargs={'jodiid':args[2]})+'/'
     #description = get_random_desc()
-    description = 'Participate in the American Express Rewarding Jodi Batao, Holiday Manao contest, enter your favourite jodi & stand to win travel vouchers worth Rs.60,000!'
+    description = 'Participate in the American Express &reg; Rewarding Jodi Batao, Holiday Manao contest, enter your favourite jodi & stand to win travel vouchers worth Rs.60,000!'
     graph.set('me/feed', message=message, picture=picture_path, link=linkUrl, description=description)
 
 @facebook_required

@@ -111,7 +111,7 @@ span.customSelect.changed {	background-color: #f0dea4; padding:10px 0 0 0px;}
 
 span.customSelect {	font-size:13px;	background-color: #ffda6f;	color:#333;	padding:12px 10px;	border:1px solid #ebb20e;-moz-border-radius: 5px;-webkit-border-radius: 5px;	border-radius: 7px 7px; font-family:Arial, Helvetica, sans-serif; width:185px; height:30px;	}
 span.customSelect.changed {	background-color: #f0dea4; }
-.customSelectInner {background:none; width:130px;padding:0px 50px 0 0;}
+.customSelectInner {background:none; width:130px !important;padding:0px 50px 0 0;}
 option {background:#ffda6f; }
 	
 .or { width:26px; height:10px; font-size:16px;  float:left; padding:11px 4px 0 24px; margin-right:-21px; }
@@ -198,7 +198,7 @@ h3 {
 .left_contain_tnc {width:950px; height:1000px; float:left; margin-left:20px; margin-top:0px;}
 .tnc_logo {padding:20px; margin-top:20px; width:280px; height:135px;}
 .about {font-size:12px; color:#215578; ; font-family:Arial, Helvetica, sans-serif; padding:0px 10px 10px; margin:0px 10px 10px; line-height:18px; height:966px;}
-.term_and_condition_contain {width:950px; height:auto; float:left;}
+.term_and_condition_contain {width:925px; height:auto; float:left;}
 .term_and_condition_contain ul{ width:900px; list-style-type:disc; float: left;padding: 0px;}
 .term_and_condition_contain li{font-size:12px; color:#215578; font-weight:lighter; font-family:Arial; padding:5px 10px 5px 0px; margin:5px 10px 5px 0px; line-height:18px; list-style-type:disc;}
 .foter_box {
