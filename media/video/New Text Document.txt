@@ -1,0 +1,13 @@
+<div class="easyhtml5video" style="position:relative;max-width:640px;"><video controls="controls"  autoplay="autoplay" poster="index.files/html5video/Video_04112013.jpg" style="width:100%" title="640">
+<source src="index.files/html5video/Video_04112013.m4v" type="video/mp4" />
+<source src="index.files/html5video/Video_04112013.webm" type="video/webm" />
+<source src="index.files/html5video/Video_04112013.ogv" type="video/ogg" />
+<object type="application/x-shockwave-flash" data="index.files/html5video/flashfox.swf" width="640" height="480" style="position:relative;">
+<param name="movie" value="index.files/html5video/flashfox.swf" />
+<param name="allowFullScreen" value="true" />
+<param name="flashVars" value="autoplay=true&amp;controls=true&amp;fullScreenEnabled=true&amp;posterOnEnd=true&amp;loop=false&amp;poster=index.files/html5video/Video_04112013.jpg&amp;src=Video_04112013.m4v" />
+ <embed src="index.files/html5video/flashfox.swf" width="640" height="480" style="position:relative;"  flashVars="autoplay=true&amp;controls=true&amp;fullScreenEnabled=true&amp;posterOnEnd=true&amp;loop=false&amp;poster=index.files/html5video/Video_04112013.jpg&amp;src=Video_04112013.m4v"	allowFullScreen="true" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer_en" />
+<img alt="Video_04112013" src="index.files/html5video/Video_04112013.jpg" style="position:absolute;left:0;" width="100%" title="Video playback is not supported by your browser" />
+</object>
+</video><span><a href="http://easyhtml5video.com">free ogg video converter for mac</a> by EasyHtml5Video.com v2.0</span></div>
+<script src="index.files/html5video/html5ext.js" type="text/javascript"></script>
