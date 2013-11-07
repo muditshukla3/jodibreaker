@@ -60,13 +60,19 @@
            Your Jodi is at rank {{jodiRank}} in the Rewarding Jodi Batao Contest.
            </div>
 	
-    <div class="hurry">You can share your Jodi again and get more votes from your friends.</div>
+    <div class="hurry">
+        {% if msg %}
+            Now share your jodi to get votes and be on top of the tally.
+        {% else %}
+            You can share your Jodi again and get more votes from your friends.
+        {% endif %}
+    </div>
 
 
          <div class="share_now"><input data-jodiid="{{selected_jodi.id}}"  type='submit' class="shareagain share_now_hover" style="border: 0px;"  name='submit' value=''>
 
 
-             <a target="_blank" class="shareagain twitter" style="border: 0px;"  href="https://twitter.com/intent/tweet?text=Help-me-win-this-contest-by-voting-for-my-favorite-Jodi&amp;url=http://www.pointeeworld.com/vote/{{selected_jodi.id}}/"></a>
+             <a target="_blank" class="twitter" style="border: 0px;"  href="https://twitter.com/intent/tweet?text=Vote-for-my-favourite-Jodi&amp;url=https://www.pointeeworld.com/vote/{{selected_jodi.id}}/"></a>
 
 
          </div>

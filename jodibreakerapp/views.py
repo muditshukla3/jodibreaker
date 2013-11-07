@@ -14,8 +14,7 @@ from django.core.exceptions import MultipleObjectsReturned
 
 import logging
 import json
-import urllib2
-
+import urllib2,urllib
 
 logger = logging.getLogger('view')
 @facebook_required()
@@ -118,7 +117,7 @@ def trendingjodi(request, graph, redirect=None):
         templateName = '/fb/treading_jodi.html'
     else:
         templateName = 'treading_jodi.html'
-        
+    msg = 0
     if request.method == 'GET':
         fb_id=request.session.get('fb_id',None)
         fb_profile=FacebookUserProfile.objects.filter(facebook_id=fb_id)
@@ -132,20 +131,24 @@ def trendingjodi(request, graph, redirect=None):
     else:
 
         createflag = 1
+        msg=1
         jodi = request.POST.get('jodi')
         jodi_custom = request.POST.get('jodi_custom')
+
         fb_profile = FacebookUserProfile.objects.filter(facebook_id=int(request.POST.get('fb_id')))
         mobile = request.POST.get('mobile_no')
         if fb_profile:
             if mobile:
                 fb_profile[0].mobile_no = mobile
                 fb_profile[0].save()
+            else:
+                mobile = '0000000000'
             kwargs = {'profile':fb_profile[0]}
             jodi=UserJodi.objects.filter(profile=fb_profile[0])
             if jodi:
                 createflag = 0
         else:
-            return HttpResponse('Wrong data')
+            return HttpResponse('Some Error has occured kindly try again later')
         if jodi_custom:
             kwargs['jodi_custom'] = jodi_custom
         else:
@@ -153,13 +156,19 @@ def trendingjodi(request, graph, redirect=None):
             kwargs['jodi_custom'] = jodi.jodi
         if createflag == 0:
             return HttpResponse('You have already created jodi')
-        jodi = UserJodi.objects.create(**kwargs)
+
+        try:
+            response = urllib2.urlopen('http://campaigns.iacampaigns.co.in/amexHolidayManao/submitDetails.ashx?fbId=%s&mobileNumber=%s&jodiName=%s'%(request.POST.get('fb_id'),urllib.quote(mobile),urllib.quote(kwargs['jodi_custom'])))
+            html = response.read
+        except:
+            pass
         # Call to post on wall
+        jodi = UserJodi.objects.create(**kwargs)
         post_on_wall(graph,jodi.jodi_custom, jodi.id)
             # finding rank of jodi
             
     jodiRank = getJodiRank(jodi.id)
-    data = {'selected_jodi':jodi, 'jodiRank':jodiRank, 
+    data = {'selected_jodi':jodi, 'jodiRank':jodiRank, 'msg':msg,
             'name':fb_profile[0].facebook_firstname, 'redirect':redirect}
     return render_to_response(templateName, data, context_instance=RequestContext(request))
 
